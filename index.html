@@ -5,34 +5,70 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
+    <style>
+        .container{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin: 25px;
+            overflow: hidden;
+        }
+
+        .prof-grup{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            background-color: aqua; 
+            padding: 150px 40px;
+        }
+
+        .logo{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin: auto;
+        }
+    </style>
 </head>
-<body>
-    <h1 style="color: coral; font-family: 'Trebuchet MS'; font-size: 50px; text-align: center;">
-        My Profile
-    </h1>
-    <br>
-    <h2 style="font-family: Verdana;"><span style="color: chocolate;">Name           : </span>
-        <p style="display: inline-block; font-size: 20px; font-family: 'Consolas';">Muhammad Rizqi</p>
-    </h2>
-    <h2>About My Self  : 
-        <p style="font-size: 20px; font-family: 'Consolas'; font-weight: 100; text-align: justify;">
-            I'm interested in technology and really wants to be an expert on that. I want to know how backend developer work in a company comparing to what already learned. 
-            I also want to enhance my skill, not only on hardskill, but I want to learn how to work properly on team, in the company as well.
-        </p>
-    </h2>
-    <h2 style="font-family: 'Lucida';">Hobbies  : <p style="display: inline-block; font-size: 20px; font-family: 'Consolas'; font-weight: 100; text-align: justify;">
-        My hobbies are swimming, watching, playing games, reading news or comic.
-        </p>
-    </h2>
-    <h2 style="text-align: center; color: darkgoldenrod;">
-        Social Media
-    </h2>
-    <a href="https://www.instagram.com/muhammad_rizqi0153/?hl=id">
-        <span style="margin-left: 500px; font-size: 50px; color: deeppink;">Instagram</span>
-    </a>
-    <a href="https://www.linkedin.com/in/muhammad-r-15750a104/">
-        <span style="font-size: 50px; color: blue; margin-left: 25px;">LinkedIn</span>
-    </a>
-    
+<body class="container">
+    <div class="prof-grup">
+        <div>
+            <h1>My Profile</h1>
+            <img src="./Assets/profile.jpg" alt="profile" width="100px" style="border-radius: 50%;">
+        </div>
+        <div style="text-overflow: clip; width: 150px;">
+            <p style="font-family: consolas; font-size: 10pt;">&copy;2022 Muhammad Rizqi</p>
+        </div>
+    </div>
+    <div class="content" style="margin-left: 30px;">
+        <div class="content1" style="background-color: aliceblue; padding: 25px;">
+            <h1>About</h1>
+            <p style="text-align: justify;">
+                My name is <strong>Muhammad Rizqi</strong>. You can call me Qibe. I was born on November 18th 1999.
+                I live in Banda Aceh. Now I'm study at UPN "veteran" Yogyakarta majoring Informatics.
+                I'm interested in technology and really wants to be an expert on that. 
+                I want to know how backend developer work in a company comparing to what already learned. 
+                I also want to enhance my skill, not only on hardskill, but I want to learn how to work properly on team, in the company as well. 
+            </p>
+        </div>
+        <div class="content2" style="background-color: white; padding: 25px;">
+            <h1>Hobby</h1>
+            <p>
+                Swimming
+                <br>Watch
+                <br>Games
+                <br>Read News or Comic
+            </p>
+        </div>
+        <div class="content3" style="background-color: aliceblue; padding: 25px;">
+            <h1>Social Media</h1>
+            <div class="logo">
+                <a href="https://www.instagram.com/muhammad_rizqi0153/?hl=id"><img src="./Assets/instagram.png" width="50px"></a>
+                <a style="padding: 0 20px;" href="https://www.linkedin.com/in/muhammad-r-15750a104/"><img src="./Assets/linkedin.png" width="50px"></a>
+                <a href="https://wa.me/6282213983969"><img src="./Assets/whatsapp.png" width="50px"></a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
