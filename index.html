@@ -20,6 +20,7 @@
             justify-content: space-evenly;
             background-color: aqua;
             height: 610px;
+            
         }
 
         .logo{
@@ -28,9 +29,35 @@
             justify-content: left;
             margin: auto;
         }
+
+        .MenuBar{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            background-color: aliceblue; 
+            width: 300px;
+            height: 610px; 
+            margin-right: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 <body class="container">
+    <div class="MenuBar">
+        <a href="./index.html" style="text-decoration: none;">
+            <span style=
+            "text-align: center;
+            padding: 5px 10px;
+            font-size: 30px;"><strong>Home</strong>
+            </span>
+        </a>
+        <a href="./shoping_list.html" style="text-decoration: none;"><span style="
+            text-align: center;
+            padding: 5px 10px;
+            font-size: 30px;"><strong>Whislist</strong>
+            </span>
+        </a>
+    </div>
     <div class="prof-grup">
         <div>
             <h1>My Profile</h1>
@@ -53,12 +80,12 @@
         </div>
         <div class="content2" style="background-color: white; padding: 25px;">
             <h1>Hobby</h1>
-            <p>
-                Swimming
-                <br>Watch
-                <br>Games
-                <br>Read News or Comic
-            </p>
+            <ul>
+                <li>Swimming</li>
+                <li>Watch</li>
+                <li>Games</li>
+                <li>Read News or Comic</li>
+            </ul>
         </div>
         <div class="content3" style="background-color: aliceblue; padding: 25px;">
             <h1>Social Media</h1>
