@@ -8,65 +8,107 @@
 
     <style>
         .MenuBar{
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;
-            background-color: aliceblue; 
-            width: 300px;
-            height: 610px; 
-            margin-right: 20px;
-            text-align: center;
-        }
-
-        .container{
-            display: flex;
-            flex-direction: row;
+            background-color: aliceblue;
+            text-align: right;
         }
 
         .list-items{
-            width: 400px;
-            height: 400px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
         }
+
+        table{
+            border-collapse: collapse;
+        }
+
         table, tr, th, td {
             border: 1px solid black;
+            padding: 20px;
+        }
+        img{
+            width: 200px; 
+            display: block; 
+            margin: auto;
         }
     </style>
 </head>
 
 <body>
+    <div class="MenuBar">
+        <a href="./index.html" style="text-decoration: none;">
+            <span style=
+                "text-align: center;
+                padding: 5px 10px;
+                font-size: 30px;"><strong>Home</strong>
+            </span>
+        </a>
+        <a href="./shoping_list.html" style="text-decoration: none;">
+            <span style="
+                text-align: center;
+                padding: 5px 10px;
+                font-size: 30px;"><strong>List</strong>
+            </span>
+        </a>
+    </div>
     <h1 style="text-align: center;">List Items</h1>
-    <div class="container">
-        <div class="MenuBar">
-            <a href="./index.html" style="text-decoration: none;">
-                <span style=
-                    "text-align: center;
-                    padding: 5px 10px;
-                    font-size: 30px;"><strong>Home</strong>
-                </span>
-            </a>
-            <a href="./shoping_list.html" style="text-decoration: none;">
-                <span style="
-                    text-align: center;
-                    padding: 5px 10px;
-                    font-size: 30px;"><strong>Whislist</strong>
-                </span>
-            </a>
-        </div>
         <div class="list-items">
             <table>
-                <tr>
+                <tr style="background-color: aliceblue;">
                     <th>No. </th>
                     <th>Items</th>
+                    <th>Price</th>
+                    <th>Ammount</th>
                     <th>Description</th>
-                    <th>Category</th>
+                    <th>Total</th>
                 </tr>
                 <tr>
+                    <td>1. </td>
                     <td>
-                        Bottle
+                        <div style="text-align: center;"><b>Tumbler</b></div>
+                        <img src="/Assets/tumbler.jpg" alt="Tumbler">
+                        <h4>Category</h4>
+                        <ol type="A">
+                            <li>
+                                Plastic Tumbler
+                                <ul>
+                                    <li style="list-style-type: disc;">With text Bo 'o o wo ah</li>
+                                    <li>With text Dare with me, you Die</li>
+                                </ul>
+                            </li>
+                        </ol>
                     </td>
+                    <td>Rp. 50.000</td>
+                    <td style="text-align: center;">1</td>
+                    <td>The tumbler made custom by Rizqi</td>
+                    <td>Rp. 50.000</td>
+                </tr>
+                <tr>
+                    <td>2. </td>
+                    <td>
+                        <div style="text-align: center;"><b>Aluminium Tumbler</b></div>
+                        <img src="/Assets/tumbler_aluminium.jpg" alt="tumbler_aluminium">
+                        <h4>Category</h4>
+                        <ol type="A">
+                            <li>
+                                Plastic Tumbler
+                                <ul>
+                                    <li>With text Bo 'o o wo ah</li>
+                                    <li style="list-style-type: disc;">With text Dare with me, you Die</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </td>
+                    <td>Rp. 80.000</td>
+                    <td style="text-align: center;">1</td>
+                    <td>The tumbler made custom by Rizqi</td>
+                    <td>Rp. 80.000</td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="background-color: aliceblue; text-align: center;"><b>Total Price</b></td>
+                    <td style="background-color: aliceblue;"><b>Rp. 130. 000</b></td>
                 </tr>
             </table>
         </div>
-    </div>
 </body>
 </html>
