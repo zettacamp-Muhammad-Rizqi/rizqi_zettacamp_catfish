@@ -11,6 +11,27 @@
             background-color: aliceblue;
             text-align: right;
         }
+        table{
+            border-collapse: collapse;
+            width: 100%;
+        }
+        table th{
+            border: 2px solid Black;
+        }
+        tr, td{
+            border: 1px solid black;
+        }
+        footer{
+            padding: 10px; 
+            background-color:black; 
+            display: block; 
+            margin: auto; 
+            color: white; 
+            text-align: center;
+        }
+        #content1{
+            height: 80vh;
+        }
     </style>
 </head>
 <body>
@@ -51,8 +72,33 @@
             </span>
         </a>
     </nav>
+    <main id="content1">
+        <h1>Iitem List</h1>
+        <table id="showDisplay" style="border: 1px solid black;">
+            <tr>
+                <th>Date</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Item Name</th>
+                <th>Item Image</th>
+                <th>Item Description</th>
+            </tr>
+            <tr>
+                <td>2022-09-29</td>
+                <td>Muhammad Rizqi</td>
+                <td>muhammad.rizqi@zetta.pro</td>
+                <td>082213983969</td>
+                <td>Jl. Sunaryo no.2, Gondokusuman, Yogyakarta</td>
+                <td>Tumbler</td>
+                <td><img src="/Assets/tumbler.jpg" alt="Tumbler" style="width: 100px;"></td>
+                <td>Tumbler plastic with text custome</td>
+            </tr>
+        </table>
+    </main>
 
-    <footer style="padding: 10px; background-color:black; display: block; margin: auto; color: white; text-align: center;">
+    <footer>
         &copy;2022 Muhammad Rizqi
     </footer>
 </body>

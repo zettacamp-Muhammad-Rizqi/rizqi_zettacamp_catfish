@@ -11,6 +11,17 @@
             background-color: aliceblue;
             text-align: right;
         }
+        footer{
+            padding: 10px; 
+            background-color:black; 
+            display: block; 
+            margin: auto; 
+            color: white; 
+            text-align: center;
+        }
+        #content1{
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -51,93 +62,65 @@
             </span>
         </a>
     </nav>
-    <section style="background-color: aliceblue;">
-        <h1>Item Input</h1>
-        <form action="" method="GET" style="display: flex; flex-direction: column; width: 900px;">
-            <label for="date">Date</label>
-            <input type="date" name="date" id="date">
-            <label for="fullname">Full Name : </label>
-            <input type="text" name="name" id="fullname" required>
-            <label for="mail">Email</label>
-            <input type="email" name="email" id="mail">
-            <label for="phone">Phone Number</label>
-            <input type="tel" name="phone" id="phone">
-            <label for="address">Address</label>
-            <textarea name="address" id="address" cols="30" rows="3" style="resize: none;"></textarea>
-            <label for="nameItem">Item Name</label>
-            <input type="text" name="nameItem" id="nameItem">
-            <label for="imageItem">Input item image</label>
-            <input type="file" accept="image/*" id="imageItem">
-            <label for="desItem">Item Description</label>
-            <input type="text" name="desItem" id="desItem">
-            <input type="submit" name="sendData" onclick="showInput()" value="ADD">
-        </form>
-    </section>
+    <div id="content1">
+        <section style="background-color: aliceblue;">
+            <h1>Item Input</h1>
+            <form style="display: flex; flex-direction: column; width: 900px;">
+                <label for="date">Date</label>
+                <input type="date" name="date" id="date">
+                <label for="fullname">Full Name : </label>
+                <input type="text" name="name" id="fullname" required>
+                <label for="mail">Email</label>
+                <input type="email" name="email" id="mail">
+                <label for="phone">Phone Number</label>
+                <input type="tel" name="phone" id="phone">
+                <label for="address">Address</label>
+                <textarea name="address" id="address" cols="30" rows="3" style="resize: none;"></textarea>
+                <label for="nameItem">Item Name</label>
+                <input type="text" name="nameItem" id="nameItem">
+                <label for="imageItem">Input item image</label>
+                <input type="file" accept="image/*" id="imageItem">
+                <label for="desItem">Item Description</label>
+                <input type="text" name="desItem" id="desItem">
+                <br>
+                <input type="button" name="sendData" onclick="showInput()" value="ADD">
+            </form>
+        </section>
+        <section>
+            <p id="showDate"></p><br>
+            <p id="showName"></p><br>
+            <p id="showMail"></p><br>
+            <p id="showPhone"></p><br>
+            <p id="showAddress"></p><br>
+            <p id="showItem"></p><br>
+            <p id="showImage"></p><br>
+            <p id="showDes"></p>
+    
+            <script>
+                function showInput(){
+                    let Date = document.getElementById("date").value;
+                    let Name = document.getElementById("fullname").value;
+                    let Email = document.getElementById("mail").value;
+                    let Phone = document.getElementById("phone").value;
+                    let Address = document.getElementById("address").value;
+                    let NameItem = document.getElementById("nameItem").value;
+                    let ImageItem = document.getElementById("imageItem").value;
+                    let DesItem = document.getElementById("desItem").value;
+    
+                    document.getElementById("showDate").innerHTML = Date;
+                    document.getElementById("showName").innerHTML = Name;
+                    document.getElementById("showMail").innerHTML = Email;
+                    document.getElementById("showPhone").innerHTML = Phone;
+                    document.getElementById("showAddress").innerHTML = Address;
+                    document.getElementById("showItem").innerHTML = NameItem;
+                    document.getElementById("showImage").innerHTML = ImageItem;
+                    document.getElementById("showDes").innerHTML = DesItem;
+                }
+            </script>
+        </section>
+    </div>
     <br>
-    <section>
-        <h1>Iitem Display</h1>
-        <table id="showDisplay">
-            <tr>
-                <th>Date</th>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Phone Number</th>
-                <th>Address</th>
-                <th>Item Name</th>
-                <th>Item Image</th>
-                <th>Item Description</th>
-            </tr>
-        </table>
-        <script>
-            let list1 = []
-            let list2 = []
-            let list3 = []
-            let list4 = []
-            let list5 = []
-            let list6 = []
-            let list7 = []
-            let list8 = []
-
-            let many = 1;
-            let zero = 0;
-
-            function showInput(){
-            let Add = document.getElementById('showDisplay');
-			let New = AddRown.insertRow(many);
-
-			list1[zero] = document.getElementById("date").value;
-			list2[zero] = document.getElementById("fullname").value;
-			list3[zero] = document.getElementById("mail").value;
-			list4[zero] = document.getElementById("phone").value;
-            list5[zero] = document.getElementById("address").value;
-            list6[zero] = document.getElementById("nameItem").value;
-            list7[zero] = document.getElementById("imageItem").value;
-            list8[zero] = document.getElementById("desItem").value;
-
-			let cel1 = NewRow.insertCell(0);
-			let cel2 = NewRow.insertCell(1);
-			let cel3 = NewRow.insertCell(2);
-			let cel4 = NewRow.insertCell(3);
-            let cel5 = NewRow.insertCell(4);
-            let cel6 = NewRow.insertCell(5);
-            let cel7 = NewRow.insertCell(6);
-            let cel8 = NewRow.insertCell(7);
-
-			cel1.innerHTML = list1[zero];
-			cel2.innerHTML = list2[zero];
-			cel3.innerHTML = list3[zero];
-			cel4.innerHTML = list4[zero];
-            cel5.innerHTML = list5[zero];
-            cel6.innerHTML = list6[zero];
-            cel7.innerHTML = list7[zero];
-            cel8.innerHTML = list8[zero];
-
-			many++;
-			zero++;
-            }
-        </script>
-    </section>
-    <footer style="padding: 10px; background-color:black; display: block; margin: auto; color: white; text-align: center;">
+    <footer>
         &copy;2022 Muhammad Rizqi
     </footer>
 </body>
