@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Album Preview</title>
+
+    <style>
+        body{
+            background-color: #FDEEDC;
+        }
+
+        .navbar{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            font-size: 18pt;
+            background-color: #FFD8A9;
+            padding: 14px 16px;
+            text-align: right;
+            position: relative;
+        }
+        a{
+            text-decoration: none;
+            color: #E38B29;
+        }
+        a:hover{
+            background-color: #F1A661;
+            padding: 30px;
+        }
+        #logos a:hover{
+            background-color: #F1A661;
+            padding: 30px;
+        }
+
+        footer{
+            background-color: #E38B29;
+            padding: 10px;
+            display: block;  
+            color: white; 
+            text-align: center;
+        }
+        .content1{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            border: 1px solid black;
+            width: 80%;
+            margin: auto;
+            background-color: #FFD8A9;
+            padding: 10px;
+        }
+
+        #submit{
+            padding: 10px;
+            color: white;
+            background-color: black;
+        }
+        .container{
+            display: flex;
+            flex-direction: row;
+        }
+        aside{
+            width: 100%;
+            padding-left: 15px;
+            margin-left: 15px;
+            float: right;
+            font-style: italic;
+            background-color: lightgray;
+        }
+
+        .container2{
+            display: flex;
+            flex-direction: row;
+            margin-left: 0 20px;
+        }
+
+        .container3{
+            display: flex;
+            flex-direction: row;
+        }
+        .cost{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div id="logos">
+            <a href="/index.html" style="display: flex; flex-direction: row; justify-content: space-evenly; width: auto;">
+                <img src="/Assets/home logo.png" alt="home_logo" style="width: 30px;">
+                <p style="font-family: consolas; color: white;">Qibe</p>
+            </a>
+        </div>
+        <a href="/profile.html">Profile</a>
+        <a href="/song_listing.html">Song Listing</a>
+        <a href="/album_preview.html">Album Preview</a>
+    </nav>
+    <br>
+    <section class="content1">
+        <h1 style="text-align: center;">Album Preview</h1>
+        <div class="container">
+            <figure>
+                <img src="/Assets/Album.jpg" alt="Album" style="width: 200px; height: 300px;">
+                <figcaption style="text-align: center;">
+                    Tory Lanez Album <br>Alone at Prome<br><br><br>
+                    <div style="text-align: left;">
+                        Artist : Tory Lanez <br>
+                        City   : Canada <br>
+                        year   : December 10, 2021 <br>
+                    </div>
+                </figcaption>
+            </figure>
+            <article id="describe">
+                <h2>Alone at Prome</h2>
+                <p style="text-align: justify;">
+                    Alone at Prom is the sixth studio album by Canadian singer and rapper Tory Lanez. 
+                    It was released on December 10, 2021, through his independent label One Umbrella. 
+                    The album is heavily inspired by '80s music, and it was developed based on that era of music and aesthetics.
+                    <br><br>
+                    The album was supported by three singles: "Lady of Namek", "'87 Stingray" and "Enchanted Waterfall".
+                </p>
+
+                <div class="container2">
+                    <div>
+                        <h2>Background</h2>
+                        <p style="text-align: justify;">
+                            The album was first announced through the singer's Instagram account when he
+                            revealed that he was working on an "80s capsule" in late 2020, sharing snippets
+                            of the project during the last months of 2020 and throughout 2021.
+                            Alone at Prom was officially announced, along with its title, in September 2021.
+                            Lanez cited as musical inspirations for the project artists such as Hall & Oates,
+                            Toto, Michael Jackson and Rick James.
+                            <br>
+                            He explained its musical direction by saying, "The music was so retro and
+                            nostalgic that the character had to be created and authenticated through film,
+                            picture and music video."
+                        </p>
+                    </div>
+                    <aside>
+                        <h3>Critical reception</h3>
+                        <p style="text-align: left;">
+                            Andy Kellman of AllMusic gave the album a 2.5 rating in his review,
+                            saying that the album "works to Tory's advantage that he sounds as if he's in
+                            character and (perhaps as a consequence) doesn't resort to self-pitying
+                            histrionics.
+                        </p>
+                    </aside>
+                </div>
+
+                <details class="container3">
+                    <summary><strong>Track</strong></summary>
+                    <div style="border: 1px solid black; width: 70%;">
+                        <h3 style="margin: 50px 20px;">Track Listing</h3>
+                        <div class="list-songs" style="display: block; ">
+                            <ul style="list-style-type: none;">
+                                <li>
+                                    <ol>
+                                        <li>Enchanted Waterfall</li>
+                                        <li>Pink Dolphin Sunset</li>
+                                        <li>Midnight's Interlude</li>
+                                        <li>The Color Violet</li>
+                                        <li>Lavender Sunflower</li>
+                                        <li>Ballad of a Badman</li>
+                                        <li>Lady of Namek</li>
+                                        <li>Pluto's Last Comet</li>
+                                    </ol>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>                   
+                </details>
+
+                <div class="cost">
+                    <h2>Price</h2>
+                    <p style="font-size: 20pt;"><i>$10</i></p>
+                </div>
+
+
+
+            </article>
+        </div>
+    </section>
+    <br>
+</body>
+<footer>&copy;2022 by Muhammad Rizqi</footer>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+
+    <style>
+        body{
+            background-color: #FDEEDC;
+        }
+
+        .navbar{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            font-size: 18pt;
+            background-color: #FFD8A9;
+            padding: 14px 16px;
+            text-align: right;
+            position: relative;
+        }
+        a{
+            text-decoration: none;
+            color: #E38B29;
+        }
+        a:hover{
+            background-color: #F1A661;
+            padding: 30px;
+        }
+        #logos a:hover{
+            background-color: #F1A661;
+            padding: 30px;
+        }
+
+        footer{
+            background-color: #E38B29;
+            padding: 10px;
+            display: block;  
+            color: white; 
+            text-align: center;
+        }
+        .content1{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            border: 1px solid black;
+            width: 70%;
+            margin: auto;
+            background-color: #FFD8A9;
+            padding: 10px;
+        }
+        #profile{
+            width: 200px;
+            border-radius: 50%;
+            border: 1px solid black;
+            margin-left: 10px;
+        }
+        .row-profile{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div id="logos">
+            <a href="/index.html" style="display: flex; flex-direction: row; justify-content: space-evenly; width: auto;">
+                <img src="/Assets/home logo.png" alt="home_logo" style="width: 30px;">
+                <p style="font-family: consolas; color: white;">Qibe</p>
+            </a>
+        </div>
+        <a href="/profile.html">Profile</a>
+        <a href="/song_listing.html">Song Listing</a>
+        <a href="/album_preview.html">Album Preview</a>
+    </nav>
+    <br>
+    <section class="content1">
+        <h1 style="text-align: center;">Profile</h1>
+        <br>
+            <div class="row-profile">
+                <div class="pictures">
+                    <img src="/Assets/profile.jpg" alt="profile_photo" id="profile">
+                </div>
+                <div class="des-profile">
+                    <p style="font-family: Georgia; color: #E38B29;"><b>Muhammad Rizqi</b></p>
+                    <p style="font-family: Georgia;">Email : muhammad.rizqi@zetta.pro</p>
+                    <p style="font-family: Georgia;">Account Type : Private</p>
+                    <br>
+                    <div class="music-favorite">
+                        <h2>Music Favorite</h2>
+                        <audio src="/Assets/music.mp3" controls></audio>
+                    </div>
+                    <div class="music-video-favorite">
+                        <h2>Music Video Favorite</h2>
+                        <video src="/Assets/music_video.mp4" controls height="200px"></video>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <br>
+</body>
+<footer>&copy;2022 by Muhammad Rizqi</footer>
+</html>

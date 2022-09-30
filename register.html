@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+    <style>
+        body{
+            background-color: #FDEEDC;
+        }
+
+        .navbar{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            font-size: 18pt;
+            background-color: #FFD8A9;
+            padding: 14px 16px;
+            text-align: right;
+            position: relative;
+        }
+        a{
+            text-decoration: none;
+            color: #E38B29;
+        }
+        a:hover{
+            background-color: #F1A661;
+            padding: 30px;
+        }
+        #logos a:hover{
+            background-color: #F1A661;
+            padding: 30px;
+        }
+
+        footer{
+            background-color: #E38B29;
+            padding: 10px;
+            display: block;  
+            color: white; 
+            text-align: center;
+        }
+        .content1{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            border: 1px solid black;
+            width: 60%;
+            margin: auto;
+            background-color: #FFD8A9;
+            padding: 10px;
+        }
+
+        #submit{
+            padding: 10px;
+            color: white;
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div id="logos">
+            <a href="/index.html" style="display: flex; flex-direction: row; justify-content: space-evenly; width: auto;">
+                <img src="/Assets/home logo.png" alt="home_logo" style="width: 30px;">
+                <p style="font-family: consolas; color: white;">Qibe</p>
+            </a>
+        </div>
+        <a href="/index.html">Home</a>
+        <a href="/about.html">About</a>
+    </nav>
+    <br>
+    <section class="content1">
+        <h1 style="text-align: center;">Register Form</h1>
+        <form action="" method="get">
+            <label for="fname">Name </label>
+            <input type="text" name="fname" id="fname" placeholder="First Name">
+            <label for="lname"></label><input type="text" name="lname" id="lname" placeholder="Last Name"><br><br>
+            <label for="email">Email </label><input type="email" name="email" id="email" placeholder="@google.com"><br><br>
+            <label for="password">Password </label><input type="password" name="password" id="password" placeholder="inluce password"><br><br>
+            <label for="retype">Confirm Password </label><input type="password" name="password" id="retype" placeholder="retype your password"><br><br>
+            <label for="phone">Phone Number </label><input type="tel" name="phone_number" id="phone" placeholder="+62"><br><br>
+            <label for="account">What type is your account</label><br>
+            <input type="radio" name="account" id="share"><label for="share">Share</label><br>
+            <input type="radio" name="account" id="private"><label for="private">Private</label><br>
+            <input type="radio" name="account" id="family"><label for="family">Family</label><br><br>
+            <a href="/profile.html">
+                <input type="button" name="submit" id="submit" value="Submit">
+            </a>
+            
+        </form>
+    </section>
+    <br>
+</body>
+<footer>&copy;2022 by Muhammad Rizqi</footer>
+</html>
