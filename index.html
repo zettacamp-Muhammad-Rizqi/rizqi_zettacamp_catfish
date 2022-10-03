@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hobies and Favorite</title>
+
+    <style>
+        main{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 100%;
+        }
+
+        table{
+            width: 500px;
+        }
+
+        table, th, td, tr{
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        .hobby #column-2{
+            width: 95%;
+        }
+        .hobby #column-1{
+            width: 5%;
+        }
+        
+        .hobby table #bg-green {
+            background-color: green;
+        }
+        .movies table #bg-red{
+            background-color: red;
+        }
+        .songs table #bg-blue{
+            background-color: blue;
+        }
+
+        .hobby{
+            box-shadow: 5px 8px 10px rgba(0, 0, 0, 0.384);
+            margin-top: 30px;
+        }
+        .movies {
+            box-shadow: 5px 8px 10px rgba(0, 0, 0, 0.384);
+            margin-top: 30px;
+        }
+        .songs{
+            box-shadow: 5px 8px 10px rgba(0, 0, 0, 0.384);
+            margin-top: 30px;
+        }
+
+        .hobby h1{
+            text-align: center;
+        }
+        .movies h1{
+            text-align: center;
+        }
+
+    </style>
+
+</head>
+<body>
+    <main>
+        <section class="hobby">
+            <h1>Hobbies Table</h1>
+            <table>
+                <tr>
+                    <th id="coloumn-1">No.</th>
+                    <th id="column-2">Hobby</th>
+                </tr>
+                <tr id="bg-green">
+                    <td>1. </td>
+                    <td >Listen music</td>
+                </tr>
+                <tr>
+                    <td>2. </td>
+                    <td>Watch Movie</td>
+                </tr>
+                <tr>
+                    <td>3. </td>
+                    <td>Read comic</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="movies">
+            <h1>Favorites Movies</h1>
+            <table>
+                <tr>
+                    <th>No.</th>
+                    <th>Name of Movie</th>
+                </tr>
+                <tr>
+                    <td>1. </td>
+                    <td>Iron Man</td>
+                </tr>
+                <tr id="bg-red">
+                    <td>2. </td>
+                    <td>Doctor Strange</td>
+                </tr>
+                <tr>
+                    <td>3. </td>
+                    <td>Harry Potter</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="songs">
+            <h1>Favorites Song</h1>
+            <table>
+                <tr>
+                    <th>No.</th>
+                    <th>Name of Song</th>
+                    <th>Artist</th>
+                </tr>
+                <tr>
+                    <td>1. </td>
+                    <td>The color violet</td>
+                    <td>Tory Lanez</td>
+                </tr>
+                <tr>
+                    <td>2. </td>
+                    <td>Outside</td>
+                    <td>Calvin Harris</td>
+                </tr>
+                <tr id="bg-blue">
+                    <td>3. </td>
+                    <td>Drown</td>
+                    <td>Bring Me The Horizon</td>
+                </tr>
+            </table>
+        </section>
+    </main>
+</body>
+</html>

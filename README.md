@@ -1,0 +1,2 @@
+# Project 2 : Embedded Styling
+Create UI for Multiple Tables. Table Hobby, Table Favorites Movies, And Table Favorites Song. The First row of the First Table has Green Background, the second row of Second table has Red background, and the third row of Third table has a blue background.
