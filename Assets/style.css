@@ -9,9 +9,20 @@ body{
     background-color: #7D9D9C;
 }
 
-h1 {
+::selection{
+    background-color: #100F0F;
+}
+a:hover{
+    font-size: 20pt;
+}
+
+h1, h3 {
     text-align: center;
     color: #E4DCCF;
+}
+
+li{
+    font-size: 11pt;
 }
 
 .container{
@@ -19,15 +30,14 @@ h1 {
     margin: auto;
 }
 
-.row-1, .row-2, .row-3{
+.row{
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
 }
 
-.row-2{
+.row:nth-child(2){
     margin: 1rem 0;
 }
 
@@ -37,6 +47,7 @@ footer{
     font-size: 12pt;
     background-color: #576F72;
     padding: 10px ;
+    position: relative;
 }
 footer a{
     padding: 0 10px;
@@ -44,16 +55,32 @@ footer a{
     color: #E4DCCF;
 }
 
-.card button{
+.card{
+    box-shadow: 5px 8px 10px rgba(0, 0, 0, 0.5);
+    border: 1px solid #E4DCCF;
+    padding: 5px;
+}
+.card:nth-child(2){
+    margin: 0 1rem;
+}
+
+.card a{
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    margin: 50px;
     background-color: #576F72;
     border-style: none;
+    padding: 10px;
 }
 
 .card img{
     width: 200px;
     height: 150px;
+    display: block;
+    margin: auto;
 }
 
-li{
-    font-size: 11pt;
+.describe{
+    text-align: justify;
 }
