@@ -16,13 +16,47 @@ a:hover{
     font-size: 20pt;
 }
 
+.header-1{
+    position: fixed;
+    top: 0;
+    left: 10px;
+    right: 10px;
+    background-color: #576F72;
+}
 h1, h3 {
-    text-align: center;
     color: #E4DCCF;
 }
 
 li{
     font-size: 11pt;
+}
+/* .card:nth-child(2){
+    margin: 0 1rem;
+} */
+/* .row:nth-child(2){
+    margin: 1rem 0;
+} */
+
+/* For multiple class */
+.margin-main-axis-1{
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.margin-cross-axis-1{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.text-align{
+    text-align: center;
+}
+.shadow{
+    box-shadow: 5px 8px 10px rgba(0, 0, 0, 0.5);
+}
+.border{
+    border: 1px solid #E4DCCF;
+}
+.padding{
+    padding: 10px;
 }
 
 .container{
@@ -37,40 +71,17 @@ li{
     align-items: center;
 }
 
-/* .row:nth-child(2){
-    margin: 1rem 0;
-} */
-
-.margin-cross-axis-1{
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
-
 footer{
     display: flex;
     justify-content: center;
     font-size: 12pt;
     background-color: #576F72;
-    padding: 10px ;
     position: relative;
 }
 footer a{
     padding: 0 10px;
     text-decoration: none;
     color: #E4DCCF;
-}
-
-.card{
-    box-shadow: 5px 8px 10px rgba(0, 0, 0, 0.5);
-    border: 1px solid #E4DCCF;
-    padding: 5px;
-}
-.card:nth-child(2){
-    margin: 0 1rem;
-}
-.margin-main-axis-1{
-    margin-left: 1rem;
-    margin-right: 1rem;
 }
 
 .card a{
@@ -83,13 +94,32 @@ footer a{
     padding: 10px;
 }
 
-.card img{
+img{
     width: 200px;
     height: 150px;
     display: block;
     margin: auto;
 }
 
-.describe{
-    text-align: justify;
+.navigate a{
+    font-weight: bold;
+    text-decoration: none;
+    position: relative;
+    left: 1050px;
+}
+
+/* for Item Class */
+.item{
+    height: 450px;
+    overflow: hidden;
+}
+.item:hover{
+    overflow: scroll;
+}
+.item ul{
+    list-style-type: none;
+    padding: 0;
+}
+.item li{
+    display: flex;
 }
