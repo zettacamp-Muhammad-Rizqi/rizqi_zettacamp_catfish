@@ -37,8 +37,13 @@ li{
     align-items: center;
 }
 
-.row:nth-child(2){
+/* .row:nth-child(2){
     margin: 1rem 0;
+} */
+
+.margin-cross-axis-1{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 footer{
@@ -62,6 +67,10 @@ footer a{
 }
 .card:nth-child(2){
     margin: 0 1rem;
+}
+.margin-main-axis-1{
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 .card a{
