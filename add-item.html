@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Item</title>
+    <link rel="stylesheet" href="/Assets/style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="brand text-size-16">Skybe Music</a>
+        <a href="shopping-list.html">Shopping List&rarr;</a>
+    </nav>
+    <nav class="navbar-2">
+        <a href="index.html">&larr;Shopping List</a>
+    </nav>
+    <main>
+        <h1 class="text-align-c">Add New Item</h1>
+        <form class="add-item">
+            <section class="column">
+                <label for="name">Product Name</label>
+                <input type="text" name="name" id="name" placeholder="Enter the product name" required>
+                <br>
+                <label for="price">Price</label>
+                <input type="number" name="price" id="price" placeholder="Enter the product price" required>
+            </section>
+            <section class="column">
+                <input type="submit" value="&#43;Submit" id="submit">
+                <br>
+                <input type="file" accept="image/*" id="imageItem" required>
+            </section>
+        </form>
+        <h1 class="text-align-c">Product Overview</h1>
+        <section class="container">
+            <div class="card">
+                <img src="/Assets/img/album.jpg" alt="product">
+                <article>
+                    <h4 class="text-align-c">Alone at Prome Album</h4>
+                    <p class="text-align-c">This album release 10 Desember 2021</p>
+                </article>
+            </div>
+            <div class="card">
+                <img src="/Assets/img/album.jpg" alt="product">
+                <article>
+                    <h4 class="text-align-c">Alone at Prome Album</h4>
+                    <p class="text-align-c">This album release 10 Desember 2021</p>
+                </article>
+            </div>
+            <div class="card">
+                <img src="/Assets/img/album.jpg" alt="product">
+                <article>
+                    <h4 class="text-align-c">Alone at Prome Album</h4>
+                    <p class="text-align-c">This album release 10 Desember 2021</p>
+                </article>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <ul>
+            <li><a href="about-me.html">About</a></li>
+            <li><a href="contact-me.html">Contact</a></li>
+        </ul>
+    </footer>
+    
+</body>
+</html>

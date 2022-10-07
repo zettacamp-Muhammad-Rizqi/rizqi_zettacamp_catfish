@@ -56,10 +56,17 @@ main h1{
     margin: 2rem auto;
 }
 .container{
-    width: 60%;
+    width: 80%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     margin: auto;
+}
+.container .add{
+    background-color: #576F72;
+    padding: 10px;
+    border-radius: 50%;
 }
 .card{
     display: flex;
@@ -69,8 +76,76 @@ main h1{
     box-shadow: 5px 5px 10px 2px #256D85;
 }
 .card img{
+    display: block;
+    margin: auto;
     width: 200px;
     height: 100px;
+}
+
+.profile img{
+    display: block;
+    margin: auto;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.comment form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+}
+.comment #suggestions{
+    resize: none;
+}
+.comment #submit{
+    margin: 10px;
+}
+
+.add-item{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+}
+#submit{
+    background-color: #576F72;
+}
+#imageItem{
+    border: 1px dotted #576F72;
+    padding: 50px;
+}
+#name, #price{
+    padding: 0 50px;
+}
+#name:valid{
+    background-color: green;
+    border: none;
+    outline: 2px solid deepskyblue;
+    border-radius: 5px;
+}
+#name:invalid{
+    background-color: red;
+    border: none;
+    outline: 2px solid deepskyblue;
+    border-radius: 5px;
+}
+
+#price:valid{
+    background-color: green;
+    border: none;
+    outline: 2px solid deepskyblue;
+    border-radius: 5px;
+}
+#price:invalid{
+    background-color: red;
+    border: none;
+    outline: 2px solid deepskyblue;
+    border-radius: 5px;
 }
 
 /* Footer Container*/
