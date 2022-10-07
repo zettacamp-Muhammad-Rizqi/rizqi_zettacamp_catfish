@@ -1,0 +1,79 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,600;1,400&display=swap');
+
+/* All */
+* {
+    color: #06283D;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+body{
+    background-color: #DFF6FF;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    font-size: 16pt;
+}
+img:hover{
+    width: 500px;
+    height: 300px;
+}
+
+/* Header Container */
+header{
+    background-color: #47B5FF;
+    text-align: center;
+    position: sticky;
+    top: 0;
+}
+
+/* Section Container */
+.container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    width: 80%;
+    margin: 0 auto 10px;
+}
+.card{
+    padding: 10px;
+    box-shadow: 5px 5px 10px 2px #256D85;
+}
+img{
+    display: block;
+    margin: auto;
+    width: 200px;
+    height: 150px;
+}
+.button{
+    display: block;
+    background-color: #47B5FF;
+}
+
+/* Footer Container */
+footer{
+    background-color: #47B5FF;
+    padding: 5px;
+    position: relative;
+}
+footer ul{
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    margin: 5px;
+}
+footer li a{
+    margin: 8px;
+}
+
+/* For Multiple */
+.text-size{
+    font-size: 11pt;
+}
+.text-align-center{
+    text-align: center;
+}
+
