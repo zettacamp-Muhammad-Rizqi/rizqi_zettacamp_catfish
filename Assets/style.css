@@ -1,0 +1,125 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,600;1,400&display=swap');
+
+/* All */
+* {
+    color: #06283D;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+::selection{
+    background-color: #100F0F;
+}
+a:hover{
+    font-size: 20pt;
+}
+
+body{
+    background-color: #DFF6FF;
+}
+a{
+    text-decoration: none;
+}
+
+video {
+    width: 300px;
+    height: 200px;
+}
+
+/* Navbar Container*/
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    background-color: #576F72;
+    padding: 5px;
+    position: sticky;
+    top: 0;
+}
+.navbar a{
+    font-weight: bolder;
+}
+
+/* Header container*/
+.header-1{
+    display: flex;
+    justify-content: center;
+    box-shadow: 5px 5px 10px 2px #256D85;
+    width: 50%;
+    margin: 1rem auto;
+    padding: 20px 50px;
+}
+.slogan{
+    margin: 0 1rem 0;
+}
+/* Main Container*/
+main h1{
+    margin: 2rem auto;
+}
+.container{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    padding: 1rem;
+    box-shadow: 5px 5px 10px 2px #256D85;
+}
+.card img{
+    width: 200px;
+    height: 100px;
+}
+
+/* Footer Container*/
+footer{
+    background-color: #576F72;
+    padding: 5px;
+    position: sticky;
+    bottom: 0;
+}
+footer ul{
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: auto;
+}
+footer li{
+    margin: 5px 20px;
+}
+/* Multiple using*/
+.text-size-10{
+    font-size: 10pt;
+}
+.text-size-36{
+    font-size: 36pt;
+}
+.text-size-16{
+    font-size: 16pt;
+}
+.text-align-c{
+    text-align: center;
+}
+
+@media (max-width: 600px){
+    video{
+        width: 300px;
+        height: 100px;
+    }
+    .container{
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: auto;
+    }
+    .card{
+        display: flex;
+        flex-direction: column;
+        margin: 1rem;
+        padding: 1rem;
+        box-shadow: 5px 5px 10px 2px #256D85;
+    }
+}
