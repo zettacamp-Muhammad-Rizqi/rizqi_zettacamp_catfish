@@ -51,6 +51,8 @@ img{
 .button{
     display: block;
     background-color: #47B5FF;
+    margin: 20px;
+    padding: 5px;
 }
 
 /* Footer Container */
