@@ -1,4 +1,4 @@
-//object and property of book
+// Test include the object and declare the property
 const book = {
     title : "Detective Conan The Scarlet Alibi",
     available : true,
@@ -9,56 +9,33 @@ const book = {
     purchased : 2
 }
 
-//Main
-console.log (book.title+" Price = "+book.price)
-console.log("Amount Of Discount = "+amountOfDiscount())
-console.log("Price book after discount = "+priceAfterDiscount())
-console.log("Amount of Tax = "+amountOfTax())
-console.log("Price book after tax = "+priceAfterTax())
-buyBook()
+buyBook(book)
 
-//Make the function count and statement
-//Function count of discount price
-function amountOfDiscount(){
+function buyBook(book){
     let discountPrice = book.price*(book.discount/100)
-    return discountPrice
-}
-
-//Function count of tax price
-function amountOfTax(){
     let taxPrice = book.price*(book.tax/100)
-    return taxPrice
-}
-
-//Function count of the price after get the discount
-function priceAfterDiscount(){
-    let bookPriceDiscount
-    bookPriceDiscount= book.price - amountOfDiscount()
-    return bookPriceDiscount
-}
-
-//Function count of the price after get the discount and get tax price
-function priceAfterTax(){
-    let bookPriceTax
-    bookPriceTax = priceAfterDiscount() + amountOfTax()
-    return bookPriceTax
-}
-
-function buyBook(){
+    let bookPriceDiscount= book.price - discountPrice
+    let bookPriceTax = bookPriceDiscount + taxPrice
+    
     let totalPay = 0;
     for(let i=1; i<=book.purchased; i++){
         if(book.available){
-            totalPay +=priceAfterTax();
-            // console.log("Total you must pay is "+totalPay)
+            totalPay +=bookPriceTax;
             book.stock -=1
             if(book.stock<=0){
                 book.available = false
+                break;
             }
-        } else{
-            break;
-        }
+        } 
+        // else{
+        //     break;
+        // }
     }
+
+    console.log("Amount of Discount = "+discountPrice)
+    console.log("Price after Discount = "+bookPriceDiscount)
+    console.log("Amount of Tax = "+taxPrice)
+    console.log("Price after tax = "+bookPriceTax)
     console.log("Total you must pay is "+totalPay)
     book.stock > 0 ? console.log("Amount of book after purchasing can be purchased again") : console.log("Amount of book after purchasing can't be purchased again")
-    
 }
