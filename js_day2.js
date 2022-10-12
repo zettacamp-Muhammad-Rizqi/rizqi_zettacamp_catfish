@@ -15,13 +15,16 @@ const book = {
 //Destructuring object
 let {creditMonth} = book
 
+console.log(creditMonth)
+console.log(book)
+
 let discountPrice = book.price*(book.discount/100)
 let taxPrice = book.price*(book.tax/100)
 let bookPriceDiscount= book.price - discountPrice
 let bookPriceTax = bookPriceDiscount + taxPrice
 
 //Price a month for credit
-let payForMonth = bookPriceTax/creditMonth
+// let payForMonth = bookPriceTax/creditMonth
 
 //Condition for use credit or not
 if(book.isCredit==true){
@@ -55,6 +58,7 @@ function buyBook(buku){
 
 //function push data into credit
 function buyWithCredit(buku){
+    let payForMonth = Math.round(bookPriceTax/creditMonth)
     let payCredit=0
     for(let i=1; i<=buku.creditMonth; i+=1){
         payCredit+=payForMonth
@@ -67,3 +71,5 @@ function buyWithCredit(buku){
     }
     console.log(...buku.credit)
 }
+
+//Ingat untuk Revisi ke 1 Fungsi saja!!!
