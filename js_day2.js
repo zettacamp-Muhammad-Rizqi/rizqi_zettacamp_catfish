@@ -58,7 +58,12 @@ function buyWithCredit(buku){
     let payCredit=0
     for(let i=1; i<=buku.creditMonth; i+=1){
         payCredit+=payForMonth
-        buku.credit.push(payCredit)
+        // buku.credit.push(payCredit)
+        buku.credit.push({
+            month : i,
+            payMonth : payForMonth,
+            totalPayMonth : payCredit,
+        })
     }
     console.log(...buku.credit)
 }
