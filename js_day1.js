@@ -6,40 +6,22 @@ const book = {
     tax : 12,
     discount : 30,
 }
-//Below is the declaration of the variable without using object and property
-// const titleOfBook= "Detective Conan The Scralet Alibi"
-// let enable = true
-// let price = 100000
-// let tax = 12
-// let discount = 30
 
+totalPay(book)
 
-function amountOfDiscount(){
+function totalPay(book){
     let discountPrice = book.price*(book.discount/100)
-    console.log("Amount Of Discount = "+discountPrice)
-    return discountPrice
-}
-
-function amountOfTax(){
     let taxPrice = book.price*(book.tax/100)
+    let bookPriceDiscount= book.price - discountPrice
+    let bookPriceTax = bookPriceDiscount + taxPrice
+    
+    if(book.enable==true){
+        console.log("The book is ready to buy")
+    } else{
+        console.log("The book is not ready to buy")
+    }
+    console.log("Amount of Discount = "+discountPrice)
+    console.log("Price after Discount = "+bookPriceDiscount)
     console.log("Amount of Tax = "+taxPrice)
-    return taxPrice
+    console.log("Price after tax = "+bookPriceTax)
 }
-
-function priceAfterDiscount(){
-    let bookPriceDiscount
-    bookPriceDiscount= book.price - amountOfDiscount()
-    console.log("Price book after discount = "+bookPriceDiscount)
-    return bookPriceDiscount
-}
-function priceAfterTax(){
-    let bookPriceTax
-    bookPriceTax = priceAfterDiscount() + amountOfTax()
-    console.log("Price book after tax = "+bookPriceTax)
-}
-
-if (book.enable == true){
-    console.log("The book is ready to Buy")
-}
-console.log (book.title+" Price = "+book.price)
-priceAfterTax()
