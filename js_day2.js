@@ -12,12 +12,18 @@ const book = {
     credit : [],
 }
 
+//Destructuring object
+let {creditMonth} = book
+
 let discountPrice = book.price*(book.discount/100)
 let taxPrice = book.price*(book.tax/100)
 let bookPriceDiscount= book.price - discountPrice
 let bookPriceTax = bookPriceDiscount + taxPrice
-let payForMonth = bookPriceTax/book.creditMonth
 
+//Price a month for credit
+let payForMonth = bookPriceTax/creditMonth
+
+//Condition for use credit or not
 if(book.isCredit==true){
     buyWithCredit(book)
 }
@@ -25,6 +31,7 @@ else{
     buyBook(book)
 }
 
+//Normal without credit balance
 function buyBook(buku){
     let totalPay = 0;
     for(let i=1; i<=buku.purchased; i++){
@@ -46,6 +53,7 @@ function buyBook(buku){
     book.stock > 0 ? console.log("Amount of book after purchasing can be purchased again") : console.log("Amount of book after purchasing can't be purchased again")
 }
 
+//function push data into credit
 function buyWithCredit(buku){
     let payCredit=0
     for(let i=1; i<=buku.creditMonth; i+=1){
