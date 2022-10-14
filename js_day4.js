@@ -1,3 +1,4 @@
+//Array Object for list song
 const songs = [
     {
         no : 1,
@@ -108,7 +109,7 @@ const songs = [
 
 // groupByArtist(songs, "Alan Walker")
 // groupByGenre(songs, "rap")
-groupByDuration(songs, 60)
+groupByDuration(songs, 30)
 
 function groupByArtist(songs, name){
     let artistName = songs.filter(artistName=>artistName.artist===name)
@@ -117,18 +118,21 @@ function groupByArtist(songs, name){
 
 function groupByGenre(songs, nameGenre){
     let genreName = songs.filter(genreName=>genreName.genre===nameGenre)
-    // console.log(...genreName)
+    console.log(...genreName)
 }
 
 function groupByDuration(songs, minute){
-    console.log("grupbyDuration")
     //this function for group songs less one hour
     
     let addition = 0
     for(let i=0; i<songs.length; i++){
         addition +=songs[i].duration
         if(addition<minute){
-            console.log(songs[i].duration)
+            console.log(songs[i])
+            console.log(addition)
+        }else{
+            break
         }
     }
+    console.log(addition)
 }
