@@ -14,10 +14,11 @@ app.get('/buyCredit', authentication, (req, res) => {
 })
 
 
-const userName = 'rizqi'
-const password = 'rizqi01'
+
 
 function authentication(req, res, next){
+    const userName = 'rizqi'
+    const password = 'rizqi01'
     let authheader = req.headers.authorization;
     //console.log(req.headers.authorization);
 
