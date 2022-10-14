@@ -32,8 +32,8 @@ const book = {
 
 function buyBook(buku){
     let {creditMonth} = book //Destructuring object to make creditMonth from the book too make local variabel
-    let discountPrice = book.price*(book.discount/100) //count the discount price
-    let taxPrice = book.price*(book.tax/100) // count the tax price
+    let discountPrice = buku.price*(buku.discount/100) //count the discount price
+    let taxPrice = buku.price*(buku.tax/100) // count the tax price
     let bookPriceDiscount= book.price - discountPrice //count the book after get discount
     let bookPriceTax = bookPriceDiscount + taxPrice // count the book after get discount and get tax
 
