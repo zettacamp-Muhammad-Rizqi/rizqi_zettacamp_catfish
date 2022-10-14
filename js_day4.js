@@ -107,9 +107,9 @@ const songs = [
     },
 ]
 
-groupByArtist(songs, "Alan Walker")
-groupByGenre(songs, "rap")
-groupByDuration(songs, 60)
+// groupByArtist(songs, "Alan Walker")
+// groupByGenre(songs, "jazz")
+console.log(groupByDuration(songs, 60))
 
 function groupByArtist(songs, name){
     let artistName = songs.filter(artistName=>artistName.artist===name)
@@ -125,11 +125,17 @@ function groupByDuration(songs, minute){
     //this function for group songs less one hour
     
     let addition = 0
+    let playlist = []
     for(let i=0; i<songs.length; i++){
         if(addition+songs[i].duration<minute){
-            console.log(songs[i])
+            playlist.push(songs[i])
+            // console.log(songs[i]) 
             addition +=songs[i].duration
         }
     }
-    console.log(addition)
+    // console.log(addition)
+    return {
+        ...playlist,
+        addition
+    }
 }
