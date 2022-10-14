@@ -22,7 +22,7 @@ function authentication(req, res, next){
     //console.log(req.headers.authorization);
 
     if (!authheader){
-        res.send("Tidak ada otentikasi");
+        res.send("No Authentication :(");
         res.end();
     } else {
         let auth = new Buffer.from(authheader.split(' ')[1],'base64').toString().split(':');
@@ -32,10 +32,10 @@ function authentication(req, res, next){
         if (user == userName && pass == password) {
  
             // If Authorized user
-            console.log(`${userName} berhasil terotentikasi`);
+            // console.log("Succes Authentication")
             next();
         } else {
-            res.send("Kamu tidak terotentikasi");
+            res.send("You can't Authentication");
             res.end();
         }
     }
