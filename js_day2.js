@@ -3,19 +3,47 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-app.get('/book', (req, res) => {
-  res.send(book)
+
+app.get('/', authentication, (req, res)=>{
+    res.send(book)
 })
 
-app.get('/buy', (req, res) => {
+app.get('/buyCredit', authentication, (req, res) => {
     buyBook(book)
     res.send(book)
-  })
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
 })
 
+
+const userName = 'rizqi'
+const password = 'rizqi01'
+
+function authentication(req, res, next){
+    let authheader = req.headers.authorization;
+    //console.log(req.headers.authorization);
+
+    if (!authheader){
+        res.send("Tidak ada otentikasi");
+        res.end();
+    } else {
+        let auth = new Buffer.from(authheader.split(' ')[1],'base64').toString().split(':');
+        let user = auth[0];
+        let pass = auth[1];
+       
+        if (user == userName && pass == password) {
+ 
+            // If Authorized user
+            console.log(`${userName} berhasil terotentikasi`);
+            next();
+        } else {
+            res.send("Kamu tidak terotentikasi");
+            res.end();
+        }
+    }
+}
+
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+  })
 //Make object
 const book = {
     title : "Detective Conan The Scarlet Alibi",
@@ -25,7 +53,7 @@ const book = {
     discount : 30,
     stock : 3,
     purchased : 2,
-    isCredit : false,
+    isCredit : true,
     creditMonth : 6,
     credit : [],
 }
@@ -34,7 +62,7 @@ function buyBook(buku){
     let {creditMonth} = book //Destructuring object to make creditMonth from the book too make local variabel
     let discountPrice = buku.price*(buku.discount/100) //count the discount price
     let taxPrice = buku.price*(buku.tax/100) // count the tax price
-    let bookPriceDiscount= book.price - discountPrice //count the book after get discount
+    let bookPriceDiscount= buku.price - discountPrice //count the book after get discount
     let bookPriceTax = bookPriceDiscount + taxPrice // count the book after get discount and get tax
 
     if(book.isCredit==true){
