@@ -1,3 +1,21 @@
+//expressjs start here
+const express = require('express')
+const app = express()
+const port = 3000
+
+app.get('/book', (req, res) => {
+  res.send(book)
+})
+
+app.get('/buy', (req, res) => {
+    buyBook(book)
+    res.send(book)
+  })
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
+
 //Make object
 const book = {
     title : "Detective Conan The Scarlet Alibi",
@@ -11,8 +29,6 @@ const book = {
     creditMonth : 6,
     credit : [],
 }
-
-buyBook(book) //Call the function
 
 function buyBook(buku){
     let {creditMonth} = book //Destructuring object to make creditMonth from the book too make local variabel
