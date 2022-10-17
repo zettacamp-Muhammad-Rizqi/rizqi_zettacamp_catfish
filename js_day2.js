@@ -9,7 +9,7 @@ app.get('/', authentication, (req, res)=>{
 })
 
 app.get('/buyCredit', authentication, (req, res) => {
-    buyBook(book)
+    buyBook(book, false)
     res.send(book)
 })
 
@@ -52,21 +52,21 @@ const book = {
     price : 100000,
     tax : 12,
     discount : 30,
-    stock : 3,
-    purchased : 2,
-    isCredit : true,
+    stock : 2,
+    purchased : 3,
     creditMonth : 6,
     credit : [],
+    bill : [],
 }
 
-function buyBook(buku){
+function buyBook(buku, isCredit){
     let {creditMonth} = book //Destructuring object to make creditMonth from the book too make local variabel
     let discountPrice = buku.price*(buku.discount/100) //count the discount price
     let taxPrice = buku.price*(buku.tax/100) // count the tax price
     let bookPriceDiscount= buku.price - discountPrice //count the book after get discount
     let bookPriceTax = bookPriceDiscount + taxPrice // count the book after get discount and get tax
 
-    if(book.isCredit==true){
+    if(isCredit==true){
         let payForMonth = Math.round(bookPriceTax/creditMonth)
         let payCredit=0
         for(let i=1; i<=buku.creditMonth; i+=1){
@@ -92,12 +92,19 @@ function buyBook(buku){
             }
         }
 
-        console.log("Amount of Discount = "+discountPrice)
-        console.log("Price after Discount = "+bookPriceDiscount)
-        console.log("Amount of Tax = "+taxPrice)
-        console.log("Price after tax = "+bookPriceTax)
-        console.log("Total you must pay is "+totalPay)
-        book.stock > 0 ? console.log("Amount of book after purchasing can be purchased again") : console.log("Amount of book after purchasing can't be purchased again")
+        buku.bill.push({
+            amountOfDiscount : discountPrice,
+            priceAfterDiscount : bookPriceDiscount,
+            amountOfTax : taxPrice,
+            priceAftertax : bookPriceTax,
+            "Total you must pay is" : totalPay,
+        })
+
+        if (book.stock > 0 == true){
+            buku.bill.push("Amount of book after purchasing can be purchased again")
+        }else{
+            buku.bill.push("Amount of book after purchasing can't be purchased again")
+        }
     }
     
 }
