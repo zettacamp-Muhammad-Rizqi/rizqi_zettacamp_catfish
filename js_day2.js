@@ -56,8 +56,8 @@ const book = {
     price : 100000,
     tax : 12,
     discount : 30,
-    stock : 2,
-    purchased : 3,
+    stock : 3,
+    purchased : 2,
     creditMonth : 6,
     credit : [],
     bill : [],
@@ -69,7 +69,7 @@ async function calculateCredit(buku){
 
     let payForMonth = Math.round(fixPrice/creditMonth)
     let payCredit=0
-    for(let i=1; i<=buku.creditMonth; i+=1){
+    for(let i=1; i<=creditMonth; i+=1){
         payCredit+=payForMonth
         buku.credit.push({
             month : i,
