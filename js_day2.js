@@ -9,10 +9,9 @@ app.get('/', authentication, (req, res)=>{
 })
 
 app.get('/buyCredit', authentication, async(req, res) => {
-    await setTimeout(() => {
-        calculateCredit(book)
-    }, 2000);
+    
     buyBook(book)
+    book.credit = await calculateCredit(book)
     res.send(book)
 })
 
@@ -69,14 +68,16 @@ async function calculateCredit(buku){
 
     let payForMonth = Math.round(fixPrice/creditMonth)
     let payCredit=0
+    let arrayCredit = []
     for(let i=1; i<=creditMonth; i+=1){
         payCredit+=payForMonth
-        buku.credit.push({
+        arrayCredit.push({
             month : i,
             payMonth : payForMonth,
             totalPayMonth : payCredit,
         })
     }
+    return arrayCredit
 
 }
 
