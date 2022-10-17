@@ -8,8 +8,11 @@ app.get('/', authentication, (req, res)=>{
     res.send(book)
 })
 
-app.get('/buyCredit', authentication, (req, res) => {
-    buyBook(book, false)
+app.get('/buyCredit', authentication, async(req, res) => {
+    await setTimeout(() => {
+        calculateCredit(book)
+    }, 2000);
+    buyBook(book)
     res.send(book)
 })
 
@@ -45,6 +48,7 @@ function authentication(req, res, next){
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
   })
+
 //Make object
 const book = {
     title : "Detective Conan The Scarlet Alibi",
@@ -59,52 +63,54 @@ const book = {
     bill : [],
 }
 
-function buyBook(buku, isCredit){
+async function calculateCredit(buku){
     let {creditMonth} = book //Destructuring object to make creditMonth from the book too make local variabel
+    let fixPrice = buku.bill[0].priceAftertax
+
+    let payForMonth = Math.round(fixPrice/creditMonth)
+    let payCredit=0
+    for(let i=1; i<=buku.creditMonth; i+=1){
+        payCredit+=payForMonth
+        buku.credit.push({
+            month : i,
+            payMonth : payForMonth,
+            totalPayMonth : payCredit,
+        })
+    }
+
+}
+
+function buyBook(buku){
+    
     let discountPrice = buku.price*(buku.discount/100) //count the discount price
     let taxPrice = buku.price*(buku.tax/100) // count the tax price
     let bookPriceDiscount= buku.price - discountPrice //count the book after get discount
     let bookPriceTax = bookPriceDiscount + taxPrice // count the book after get discount and get tax
 
-    if(isCredit==true){
-        let payForMonth = Math.round(bookPriceTax/creditMonth)
-        let payCredit=0
-        for(let i=1; i<=buku.creditMonth; i+=1){
-            payCredit+=payForMonth
-            buku.credit.push({
-                month : i,
-                payMonth : payForMonth,
-                totalPayMonth : payCredit,
-            })
-        }
-        console.log(...buku.credit)
-    }
-    else{
-        let totalPay = 0;
-        for(let i=1; i<=buku.purchased; i++){
-            if(buku.available){
-                totalPay +=bookPriceTax;
-                buku.stock -=1
-                if(buku.stock<=0){
-                    buku.available = false
-                    break;
-                }
+    let totalPay = 0;
+    for(let i=1; i<=buku.purchased; i++){
+        if(buku.available){
+            totalPay +=bookPriceTax;
+            buku.stock -=1
+            if(buku.stock<=0){
+                buku.available = false
+                break;
             }
         }
+    }
 
-        buku.bill.push({
-            amountOfDiscount : discountPrice,
-            priceAfterDiscount : bookPriceDiscount,
-            amountOfTax : taxPrice,
-            priceAftertax : bookPriceTax,
-            "Total you must pay is" : totalPay,
-        })
+    buku.bill.push({
+        amountOfDiscount : discountPrice,
+        priceAfterDiscount : bookPriceDiscount,
+        amountOfTax : taxPrice,
+        priceAftertax : bookPriceTax,
+        "Total you must pay is" : totalPay,
+    })
 
-        if (book.stock > 0 == true){
-            buku.bill.push("Amount of book after purchasing can be purchased again")
-        }else{
-            buku.bill.push("Amount of book after purchasing can't be purchased again")
-        }
+    if (book.stock > 0 == true){
+        buku.bill.push("Amount of book after purchasing can be purchased again")
+    }else{
+        buku.bill.push("Amount of book after purchasing can't be purchased again")
     }
     
 }
