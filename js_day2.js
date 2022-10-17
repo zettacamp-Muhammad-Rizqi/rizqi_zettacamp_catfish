@@ -10,8 +10,9 @@ app.get('/', authentication, (req, res)=>{
 
 app.get('/buyCredit', authentication, async(req, res) => {
     
-    buyBook(book)
-    book.credit = await calculateCredit(book)
+    let newBook = buyBook(book)
+    console.log(newBook)
+    newBook = calculateCredit(book)
     res.send(book)
 })
 
@@ -62,7 +63,7 @@ const book = {
     bill : [],
 }
 
-async function calculateCredit(buku){
+async function calculateCredit(buku, additionMonth=600){
     let {creditMonth} = book //Destructuring object to make creditMonth from the book too make local variabel
     let fixPrice = buku.bill[0].priceAftertax
 
@@ -71,13 +72,23 @@ async function calculateCredit(buku){
     let arrayCredit = []
     for(let i=1; i<=creditMonth; i+=1){
         payCredit+=payForMonth
-        arrayCredit.push({
-            month : i,
-            payMonth : payForMonth,
-            totalPayMonth : payCredit,
-        })
+        if(i===3){
+            payForMonth+=additionMonth
+            arrayCredit.push({
+                month : i,
+                payMonth : payForMonth,
+                totalPayMonth : payCredit,
+            })
+        }else{
+            arrayCredit.push({
+                month : i,
+                payMonth : payForMonth,
+                totalPayMonth : payCredit,
+            })
+        }
     }
-    return arrayCredit
+    buku.credit = arrayCredit
+    return buku
 
 }
 
@@ -114,4 +125,5 @@ function buyBook(buku){
         buku.bill.push("Amount of book after purchasing can't be purchased again")
     }
     
+    return buku
 }
