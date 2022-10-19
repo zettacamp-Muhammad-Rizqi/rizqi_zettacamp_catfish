@@ -3,13 +3,24 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+//Events
+const Events = require('events')
+const myEvents = new Events()
+
+myEvents.on('program_start', (message)=>{
+    console.log(`Program is beginning, ${message}`)
+})
+myEvents.emit('program_start', 'Rizqi')
+
 const fs = require('fs/promises')
 //GET 'buku.txt' route async with await
 app.get('/readbuku', authentication, async (req, res)=>{
     try{
         let data = await fs.readFile('./buku.txt', {encoding:'utf-8'})
+        console.log(data)
         res.send(data)
     }catch(err){
+        console.log("Get an Error!")
         res.send(err)
     }
 })
@@ -19,9 +30,11 @@ app.get('/readbukuNoAwait', authentication, (req, res)=>{
     let data = fs.readFile('./buku.txt', {encoding:'utf-8'})
     data
         .then((result)=>{
+            console.log(data)
             res.send(result)
         })    
         .catch((err)=>{
+            console.log("Get an Error!")
             res.send(err)
         })
 })
