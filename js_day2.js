@@ -10,10 +10,10 @@ const myEvents = new Events()
 myEvents.on('program_start', (message)=>{
     console.log(`Program is beginning, ${message}`)
 })
-myEvents.emit('program_start', 'Rizqi')
+myEvents.emit('program_start', 'Rizqi') // fire or trigger
 
-const fs = require('fs/promises')
 //GET 'buku.txt' route async with await
+const fs = require('fs/promises')
 app.get('/readbuku', authentication, async (req, res)=>{
     try{
         let data = await fs.readFile('./buku.txt', {encoding:'utf-8'})
