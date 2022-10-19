@@ -1,6 +1,7 @@
-# Task Javascript Day 6
-"- Create new asynchronous function for calculate term of credit & move code to calculate price for each term from purchasing function
-- Update your book purchasing function to have a parameter of additional price for certain term. Then calculate the price for each term using function for calculate term of credit with await & display the result."
+# Detail task JS Day 7
+## Try update your book purchasing API then create 2 endpoint to read a text file, then display the content of the file on console & display any text on console
+- For endpoint 1, use promise with await to read the file
+- For endpoint 2, use promise without await to read the file
 
-# Note from EOD :
-Perbaiki bikin fungsi yang kalau tiap bulannya timbahkan lagi duitnya, kaya kondisi di bulan keberapa ada ditambahkan lagi pembayaran kreditnya.
+Note:
+- Read text file using fs.readFile()
