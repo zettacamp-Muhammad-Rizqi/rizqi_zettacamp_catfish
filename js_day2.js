@@ -3,22 +3,41 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-
-app.get('/', authentication, (req, res)=>{
-    res.send(book)
+const fs = require('fs/promises')
+//GET 'buku.txt' route async with await
+app.get('/readbuku', authentication, async (req, res)=>{
+    try{
+        let data = await fs.readFile('./buku.txt', {encoding:'utf-8'})
+        res.send(data)
+    }catch(err){
+        res.send(err)
+    }
 })
 
+//no await
+app.get('/readbukuNoAwait', authentication, (req, res)=>{
+    let data = fs.readFile('./buku.txt', {encoding:'utf-8'})
+    data
+        .then((result)=>{
+            res.send(result)
+        })    
+        .catch((err)=>{
+            res.send(err)
+        })
+})
+
+//GET credit with async await
 app.get('/buyCredit', authentication, async(req, res) => {
     
     let newBook = buyBook(book)
     console.log(newBook)
-    newBook = calculateCredit(book)
+    newBook = await calculateCredit(book)
     res.send(book)
 })
 
 
 
-
+//Authentication Basic
 function authentication(req, res, next){
     const userName = 'rizqi'
     const password = 'rizqi01'
@@ -63,7 +82,8 @@ const book = {
     bill : [],
 }
 
-async function calculateCredit(buku, additionMonth=600){
+//Calculate credit Month
+async function calculateCredit(buku, additionMonth=600, _month=3){
     let {creditMonth} = book //Destructuring object to make creditMonth from the book too make local variabel
     let fixPrice = buku.bill[0].priceAftertax
 
@@ -72,7 +92,7 @@ async function calculateCredit(buku, additionMonth=600){
     let arrayCredit = []
     for(let i=1; i<=creditMonth; i+=1){
         payCredit+=payForMonth
-        if(i===3){
+        if(i===_month){
             payForMonth+=additionMonth
             arrayCredit.push({
                 month : i,
@@ -124,6 +144,5 @@ function buyBook(buku){
     }else{
         buku.bill.push("Amount of book after purchasing can't be purchased again")
     }
-    
     return buku
 }
