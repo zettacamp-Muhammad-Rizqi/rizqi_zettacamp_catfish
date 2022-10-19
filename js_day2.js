@@ -30,7 +30,7 @@ app.get('/readbukuNoAwait', authentication, (req, res)=>{
     let data = fs.readFile('./buku.txt', {encoding:'utf-8'})
     data
         .then((result)=>{
-            console.log(data)
+            console.log(result)
             res.send(result)
         })    
         .catch((err)=>{
