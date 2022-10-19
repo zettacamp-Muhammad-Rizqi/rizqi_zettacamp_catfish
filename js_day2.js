@@ -12,7 +12,7 @@ app.get('/buyCredit', authentication, async(req, res) => {
     
     let newBook = buyBook(book)
     console.log(newBook)
-    newBook = calculateCredit(book)
+    newBook = await calculateCredit(book)
     res.send(book)
 })
 
