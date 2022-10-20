@@ -197,14 +197,14 @@ function groupByGenre(songs, nameGenre){
 
 function groupByDuration(songs, minute){
     //this function for group songs less one hour
-    
     let addition = 0
     let playlist = []
     for(let i=0; i<songs.length; i++){
-        if(addition+songs[i].duration<minute){
-            playlist.push(songs[i])
+        let randomIndex=Math.floor(Math.random()*songs.length)
+        if(addition+songs[randomIndex].duration<minute){
+            playlist.push(songs[randomIndex])
             // console.log(songs[i]) 
-            addition +=songs[i].duration
+            addition +=songs[randomIndex].duration
         }
     }
     // console.log(addition)
