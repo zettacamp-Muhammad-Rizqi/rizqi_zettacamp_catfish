@@ -111,12 +111,40 @@ const songs = [
 const express = require('express')
 const app = express()
 const port = 3000
+const jwt = require('jsonwebtoken')
+// //test Event
+// app.get('/', (req, res) => {
+//     //Events
+//     const Events = require('events')
+//     const myEvents = new Events()
 
-app.get('/', (req, res) => {
-    // groupByGenre(songs, "jazz")
-    // groupByDuration(songs, 60)
+//     myEvents.on('program_start', (message)=>{
+//         res.send(`Program is beginning, ${message}`)
+//     })
+//     myEvents.emit('program_start', 'Music') // fire or trigger
+//     res.redirect('/list')
+// })
+
+function getToken(req, res, next){
+    const {username, password} = req.body;
+    jwt.sign({
+        username, password
+    }, "secret", function(err, token){
+        if (err){
+            res.send(err)
+        }else{
+            res.send(token)
+        }
+    })
+}
+app.post('/login', express.urlencoded({extended:true}) ,getToken, (req, res) => {
+    res.send()
+})
+
+app.get('/list', (req, res) => {
     res.send(songs)
 })
+
 //group by artist
 app.post('/groupArtist', (req, res) => {
     const {artist}= req.query
@@ -136,6 +164,20 @@ app.post('/groupDuration', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+
+app.get('/about', (req, res) => {
+    const fs = require('fs/promises')
+    let data = fs.readFile('./message.txt', {encoding:'utf-8'})
+    data
+        .then((result)=>{
+            res.send(result)
+        })    
+        .catch((err)=>{
+            console.log("Get an Error!")
+            res.send(err)
+        })
+})
+
 
 //Last Task
 function groupByArtist(songs, name){
