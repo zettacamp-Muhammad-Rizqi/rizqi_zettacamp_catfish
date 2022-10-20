@@ -3,6 +3,20 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+//Make object
+const book = {
+    title : "Detective Conan The Scarlet Alibi",
+    available : true,
+    price : 100000,
+    tax : 12,
+    discount : 30,
+    stock : 3,
+    purchased : 2,
+    creditMonth : 6,
+    credit : [],
+    bill : [],
+}
+
 //Events
 const Events = require('events')
 const myEvents = new Events()
@@ -25,6 +39,11 @@ app.get('/readbuku', authentication, async (req, res)=>{
     }
 })
 
+//root page
+app.get('/', authentication, (req, res)=>{
+    res.send(book)
+})
+
 //no await
 app.get('/readbukuNoAwait', authentication, (req, res)=>{
     let data = fs.readFile('./buku.txt', {encoding:'utf-8'})
@@ -39,6 +58,7 @@ app.get('/readbukuNoAwait', authentication, (req, res)=>{
         })
 })
 
+
 //GET credit with async await
 app.get('/buyCredit', authentication, async(req, res) => {
     
@@ -47,6 +67,16 @@ app.get('/buyCredit', authentication, async(req, res) => {
     newBook = await calculateCredit(book)
     res.send(book)
 })
+
+//Make new Map for new object
+const bookMap = new Map()
+bookMap.set("Ultraman", {...book, title:"Ultraman"})
+bookMap.set("Matematika", {...book, title:"Matematika"})
+bookMap.set("IPS", {...book, title:"IPS"})
+console.log(bookMap.get("IPS"))
+// new Set
+const bookSet = new Set()
+
 
 
 
@@ -80,20 +110,6 @@ function authentication(req, res, next){
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
   })
-
-//Make object
-const book = {
-    title : "Detective Conan The Scarlet Alibi",
-    available : true,
-    price : 100000,
-    tax : 12,
-    discount : 30,
-    stock : 3,
-    purchased : 2,
-    creditMonth : 6,
-    credit : [],
-    bill : [],
-}
 
 //Calculate credit Month
 async function calculateCredit(buku, additionMonth=600, _month=3){
