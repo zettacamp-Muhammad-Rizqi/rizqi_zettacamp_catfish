@@ -78,21 +78,20 @@ titleMap.set("IPS", {...book, title:"IPS"})
 const titleSet = new Set(["Ultraman", "Matematika", "IPS"])
 
 app.get('/result', authentication, (req, res) => {
-    res.send(...titleMap)
+    res.send([...titleMap])
 })
+
 app.post('/resultAdd', authentication, (req, res) => {
-    const {title} = req.params
+    const {title} = req.query
     if(!title){
         res.send("No find the title!!!")
     }
 
     if(titleSet.has(title)){ //has to get a value true if have a value
-        res.send(`${title} the book has add to list`) //cek the title if have a duplikat
-        //get string literal
+        res.send(`${title} has add to list`) //cek the title if have a duplicate
     }else{
-        titleMap.set(title,{...book,title})//untuk menambahkan map baru
-        titleSet.add(title); //buat nambah set untuk penulis
-        console.log(titleSet)//buat memangil set dengan variable bookAuthor
+        titleMap.set(title,{...book,title})//to set new Map for POST
+        titleSet.add(title); //set to add new title
         res.send(titleMap.get(title));//respon ke postman
     }
 })
