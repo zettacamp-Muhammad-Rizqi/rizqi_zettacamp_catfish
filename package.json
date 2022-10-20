@@ -1,0 +1,22 @@
+{
+  "name": "rizqi_zettacamp_catfish",
+  "version": "1.0.0",
+  "description": "Final task of JavaScript. Will include all previous day's learning:\r 1. Transform playlist management functions into REST API\r 2. Create endpoint to receive JWT to generate token with lifetime of 1 hour\r 3. Implement JWT authentication with Bearer token for every endpoint except endpoint to receive JWT",
+  "main": "js_day4.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zettacamp-Muhammad-Rizqi/rizqi_zettacamp_catfish.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zettacamp-Muhammad-Rizqi/rizqi_zettacamp_catfish/issues"
+  },
+  "homepage": "https://github.com/zettacamp-Muhammad-Rizqi/rizqi_zettacamp_catfish#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
