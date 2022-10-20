@@ -10,11 +10,11 @@ const book = {
     price : 100000,
     tax : 12,
     discount : 30,
-    stock : 3,
-    purchased : 2,
-    creditMonth : 6,
-    credit : [],
-    bill : [],
+    // stock : 3,
+    // purchased : 2,
+    // creditMonth : 6,
+    // credit : [],
+    // bill : [],
 }
 
 //root page
@@ -73,6 +73,7 @@ const titleMap = new Map()
 titleMap.set("Ultraman", {...book, title:"Ultraman"})
 titleMap.set("Matematika", {...book, title:"Matematika"})
 titleMap.set("IPS", {...book, title:"IPS"})
+titleMap.set("IPA", {...book, title:"IPA"})
 // console.log(titleMap.get("IPS"))
 // new Set for new object
 const titleSet = new Set(["Ultraman", "Matematika", "IPS"])
