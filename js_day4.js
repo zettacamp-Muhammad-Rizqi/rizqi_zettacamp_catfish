@@ -18,7 +18,7 @@ const songs = [
         no : 3,
         title : "The Shadow",
         artist : "Blues Cousins",
-        duration : 7,
+        duration : 10,
         genre : "jazz",
     },
     {
@@ -107,18 +107,47 @@ const songs = [
     },
 ]
 
-// groupByArtist(songs, "Alan Walker")
-// groupByGenre(songs, "jazz")
-console.log(groupByDuration(songs, 60))
+//Express Declare
+const express = require('express')
+const app = express()
+const port = 3000
 
+app.get('/', (req, res) => {
+    // groupByGenre(songs, "jazz")
+    // groupByDuration(songs, 60)
+    res.send(songs)
+})
+//group by artist
+app.post('/groupArtist', (req, res) => {
+    const {artist}= req.query
+    res.send(groupByArtist(songs, artist))
+})
+
+app.post('/groupGenre', (req, res) => {
+    const {genre}= req.query
+    res.send(groupByGenre(songs, genre))
+})
+
+app.post('/groupDuration', (req, res) => {
+    const {duration}= req.query
+    res.send(groupByDuration(songs, duration))
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
+
+//Last Task
 function groupByArtist(songs, name){
     let artistName = songs.filter(artistName=>artistName.artist===name)
-    console.log(...artistName)
+    // console.log(...artistName)
+    return artistName
 }
 
 function groupByGenre(songs, nameGenre){
     let genreName = songs.filter(genreName=>genreName.genre===nameGenre)
-    console.log(...genreName)
+    // console.log(...genreName)
+    return genreName
 }
 
 function groupByDuration(songs, minute){
