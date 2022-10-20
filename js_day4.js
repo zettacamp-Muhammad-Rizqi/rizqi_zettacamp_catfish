@@ -112,24 +112,12 @@ const express = require('express')
 const app = express()
 const port = 3000
 const jwt = require('jsonwebtoken')
-// //test Event
-// app.get('/', (req, res) => {
-//     //Events
-//     const Events = require('events')
-//     const myEvents = new Events()
-
-//     myEvents.on('program_start', (message)=>{
-//         res.send(`Program is beginning, ${message}`)
-//     })
-//     myEvents.emit('program_start', 'Music') // fire or trigger
-//     res.redirect('/list')
-// })
 
 function getToken(req, res, next){
     const {username, password} = req.body;
     jwt.sign({
         username, password
-    }, "secret", function(err, token){
+    }, "secret", { expiresIn: '1m' }, function(err, token){
         if (err){
             res.send(err)
         }else{
@@ -137,11 +125,26 @@ function getToken(req, res, next){
         }
     })
 }
+function authToken(req, res, next){
+    let tokenBearer = req.headers.authorization
+    if(!tokenBearer){
+        res.send("Token Empty")
+    }else{
+        tokenBearer = tokenBearer.split(" ")[1]
+        jwt.verify(tokenBearer, "secret", function(err,token){
+            if (err){
+                res.send(err)
+            }else {
+                next()
+            }
+        })
+    }
+}
 app.post('/login', express.urlencoded({extended:true}) ,getToken, (req, res) => {
     res.send()
 })
 
-app.get('/list', (req, res) => {
+app.get('/list', authToken, (req, res) => {
     res.send(songs)
 })
 
