@@ -93,7 +93,7 @@ app.post('/resultAdd', authentication, (req, res) => {
     }else{
         titleMap.set(title,{...book,title})//to set new Map for POST
         titleSet.add(title); //set to add new title
-        res.send(titleMap.get(title));//respon ke postman
+        res.send(titleMap.get(title));//get respon to Postman
     }
 })
 
