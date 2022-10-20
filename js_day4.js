@@ -117,7 +117,7 @@ function getToken(req, res, next){
     const {username, password} = req.body;
     jwt.sign({
         username, password
-    }, "secret", { expiresIn: '1m' }, function(err, token){
+    }, "secret", { expiresIn: '1h' }, function(err, token){
         if (err){
             res.send(err)
         }else{
