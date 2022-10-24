@@ -32,6 +32,7 @@ app.post('/find', express.urlencoded({extended:true}), async (req, res) => {
     const findData = await books.findOne(
         {
             title : find
+            // _id : find //remove the comment and make title comment if want to use
         }
     )
     res.send(findData)
