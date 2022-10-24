@@ -62,6 +62,7 @@ app.put('/update', express.urlencoded({extended:true}), async (req, res) => {
     const updateData = await books.findByIdAndUpdate(
         id,
         {
+            updated_At : new Date(),
             title : newTitle
         }, {
             new : true
