@@ -31,7 +31,7 @@ app.post('/find', express.urlencoded({extended:true}), async (req, res) => {
     const {find} = req.body
     const findData = await books.findOne(
         {
-            find
+            title : find
         }
     )
     res.send(findData)
