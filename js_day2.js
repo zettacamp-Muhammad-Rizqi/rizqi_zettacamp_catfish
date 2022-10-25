@@ -5,25 +5,27 @@ const port = 3000
 
 //mongoose start here
 const mongoose = require('mongoose')
+const { findById } = require('./bookshelf')
 const bookShelfs = require('./bookshelf')
 
 //import bookshelf
 const importShelf = require('./bookshelf')
-importShelf
 
+//Mongose Connections
 async function connected(){
     await mongoose.connect('mongodb://localhost:27017/zettacamp_batch3');
 }
 connected()
 
+//Book Shema
 const bookSchema = new mongoose.Schema({
     title: String,
 	author: String,
 	date_published: Date,
 	price: Number,
-	created_At: Date,
-	updated_At: Date
-  })
+  },
+  {timestamps : true}
+  )
     
   const books = mongoose.model("books", bookSchema);
 
@@ -91,23 +93,35 @@ app.delete('/delete', express.urlencoded({extended:true}), async (req, res) => {
     res.send(deleteData)
 })
 
-                    //For bookShelf
+ /**********************For bookShelf*****************************/
 //Insert the bookShelf
 app.post('/insertShelf', express.urlencoded({extended:true}), async (req, res) => {
     const {number_shelf,category,book_id} = req.body
 
-    const insertShelf = await bookShelfs.collection.insertOne(
+    // const insertShelf = await bookShelfs.collection.insertOne(
+    //     {
+    //         number_shelf,
+    //         category,
+    //         book_id : book_id.split('\n'),
+    //     }
+    // )
+
+    // const bookShelf = await bookShelfs.findById(insertShelf.insertedId.toString())
+
+    // res.send(insertShelf)
+
+    const splitBook = book_id.split('\n') //disarankan oleh Mentor
+    // console.log(splitBook.map(param=> mongoose.Types.ObjectId(param)))
+    const shelf = new importShelf(
         {
-            number_shelf,
-            category,
-            book_id : book_id.split('\n'),
-            created_At : new Date()
+            number_shelf : number_shelf,
+            category : category,
+            book_id: splitBook.map(param=> mongoose.Types.ObjectId(param))
         }
+
     )
-
-    const bookShelf = await bookShelfs.findById(insertShelf.insertedId.toString())
-
-    res.send(bookShelf)
+    const saveShelf = await shelf.save()
+    res.send(saveShelf)
 })
 //Book Shelf Show Data
 app.get('/bookShelf', express.urlencoded({extended:true}), async (req, res) => {
@@ -116,14 +130,14 @@ app.get('/bookShelf', express.urlencoded({extended:true}), async (req, res) => {
 })
 //Update Data Shelf
 app.put('/updateShelf', express.urlencoded({extended:true}), async (req, res) => {
-    const {id_shelf, newId} = req.body
+    const {id_shelf, book_id} = req.body
     const updateBookShelf = await bookShelfs.findByIdAndUpdate(
         id_shelf,
         {
-            updated_At : new Date(),
-            newId : newId.split('\n')
+            updated_At : new Date(), //PR Hilangin
+            book_id
         }, {
-            new : true
+            new : true //data yang baru dioutput
         }
     )
     
@@ -131,15 +145,29 @@ app.put('/updateShelf', express.urlencoded({extended:true}), async (req, res) =>
 })
 //delete bookShelf
 app.delete('/deleteShelf', express.urlencoded({extended:true}), async (req, res) => {
-    const {remove_shelf} = req.body
-    const deleteShelf = await bookShelfs.deleteOne(
+    const {id_book} = req.body
+    // const deleteShelf = await bookShelfs.findByIdAndDelete(id_shelf)
+    const deleteBook = await bookShelfs.deleteOne(
         {
-            _id : remove_shelf
+            book_id : mongoose.Types.ObjectId(id_book)
         }
     )
-    res.send(deleteShelf)
+    res.send(deleteBook)
 })
-
+//filter
+app.post('/filter', express.urlencoded({extended:true}), async (req, res) => {
+    const {filter} = req.body
+    const filterShelf = await bookShelfs.find(
+        {
+            book_id : {
+                $in : [filter.toString()]
+            }
+        },
+    )
+    res.send(filterShelf)
+    // console.log(typeof filter)
+    
+})
 
 
 //Listen port

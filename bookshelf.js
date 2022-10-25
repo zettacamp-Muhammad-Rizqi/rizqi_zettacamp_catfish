@@ -9,9 +9,9 @@ const shelfSchema = new mongoose.Schema({
 			type : mongoose.Schema.Types.ObjectId
 		}
 	],
-	created_At: Date,
-	updated_At: Date
-  })
+  },
+ { timestamps : true} 
+  )
     
   const bookShelfs = mongoose.model("bookShelf", shelfSchema);
 
