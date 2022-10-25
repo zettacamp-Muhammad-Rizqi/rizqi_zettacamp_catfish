@@ -2,7 +2,14 @@
 const express = require('express')
 const app = express()
 const port = 3000
+
+//mongoose start here
 const mongoose = require('mongoose')
+const bookShelfs = require('./bookshelf')
+
+//import bookshelf
+const importShelf = require('./bookshelf')
+importShelf
 
 async function connected(){
     await mongoose.connect('mongodb://localhost:27017/zettacamp_batch3');
@@ -77,42 +84,67 @@ app.put('/update', express.urlencoded({extended:true}), async (req, res) => {
 app.delete('/delete', express.urlencoded({extended:true}), async (req, res) => {
     const {clear} = req.body
     const deleteData = await books.deleteOne(
-        {clear}
+        {
+            clear
+        }
     )
     res.send(deleteData)
 })
 
-// //JS_Day 8
-// //Make new Map for new object
-// const titleMap = new Map()
-// titleMap.set("Ultraman", {...book, title:"Ultraman"})
-// titleMap.set("Matematika", {...book, title:"Matematika"})
-// titleMap.set("IPS", {...book, title:"IPS"})
-// titleMap.set("IPA", {...book, title:"IPA"})
-// // console.log(titleMap.get("IPS"))
+                    //For bookShelf
+//Insert the bookShelf
+app.post('/insertShelf', express.urlencoded({extended:true}), async (req, res) => {
+    const {number_shelf,category,book_id} = req.body
 
-// // new Set for new object
-// const titleSet = new Set(["Ultraman", "Matematika", "IPS"])
+    const insertShelf = await bookShelfs.collection.insertOne(
+        {
+            number_shelf,
+            category,
+            book_id : book_id.split('\n'),
+            created_At : new Date()
+        }
+    )
 
-// app.get('/result', authentication, (req, res) => {
-//     res.send([...titleMap])
-// })
+    const bookShelf = await bookShelfs.findById(insertShelf.insertedId.toString())
 
-// app.post('/resultAdd', authentication, (req, res) => {
-//     const {title} = req.query
-//     if(!title){
-//         res.send("No find the title!!!")
-//     }
+    res.send(bookShelf)
+})
+//Book Shelf Show Data
+app.get('/bookShelf', express.urlencoded({extended:true}), async (req, res) => {
+    const showBookShelf = await bookShelfs.find()
+    res.send(showBookShelf)
+})
+//Update Data Shelf
+app.put('/updateShelf', express.urlencoded({extended:true}), async (req, res) => {
+    const {id_shelf, newId} = req.body
+    const updateBookShelf = await bookShelfs.findByIdAndUpdate(
+        id_shelf,
+        {
+            updated_At : new Date(),
+            newId : newId.split('\n')
+        }, {
+            new : true
+        }
+    )
+    
+    res.send(updateBookShelf)
+})
+//delete bookShelf
+app.delete('/deleteShelf', express.urlencoded({extended:true}), async (req, res) => {
+    const {remove_shelf} = req.body
+    const deleteShelf = await bookShelfs.deleteOne(
+        {
+            _id : remove_shelf
+        }
+    )
+    res.send(deleteShelf)
+})
 
-//     if(titleSet.has(title)){ //has to get a value true if have a value
-//         res.send(`${title} has add to list`) //cek the title if have a duplicate
-//     }else{
-//         titleMap.set(title,{...book,title})//to set new Map for POST
-//         titleSet.add(title); //set to add new title
-//         res.send(titleMap.get(title));//get respon to Postman
-//     }
-// })
 
+
+//Listen port
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
   })
+
+  
