@@ -88,8 +88,6 @@ app.delete('/delete', express.urlencoded({extended:true}), async (req, res) => {
     res.send(deleteData)
 })
 
-module.exports = books
-
 //Listen port
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
