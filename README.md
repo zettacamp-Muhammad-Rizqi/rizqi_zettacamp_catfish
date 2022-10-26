@@ -1,5 +1,4 @@
-# Detail task MongoDB Day 3
-1. Add collection for bookshelf on your book purchasing API
-2. The bookshelf will have list of array ids of the books in that shelf
-3. Implement CRUD REST API for bookshelf
-4. In API to get the bookshelf, implement filter by id of the book
+# Detail task MongoDB Day 4
+## Use the existing bookshelf collection from your previous tasks, then:
+1. Try filtering the data inside an array of objects using elemMatch
+2. Try updating the data inside an array of objects using arrayFilter
