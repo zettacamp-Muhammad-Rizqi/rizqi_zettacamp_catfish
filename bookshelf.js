@@ -12,46 +12,62 @@ async function connected(){
 }
 connected()
 
+//Schema Shelf
 const shelfSchema = new mongoose.Schema(
 	{
 		number_shelf : Number,
 		category: String,
 		book_id : [
 			{
-				books : {
-					type : mongoose.Schema.Types.ObjectId
-				}
+                _id:false,
+                list_id : {
+					type : mongoose.Schema.Types.ObjectId,
+				},
+                stock : Number,
+                add : Date,
 			},
-			{
-				stock : Number
-			},
-			{
-				add : Date
-			}
+			
+			
 		],
+        time : String
   	},
   	{ timestamps : true} //update created At and update At to timestamps
 )
-    
-  const bookShelfs = mongoose.model("bookShelf", shelfSchema);
+
+//Model Schema
+const bookShelfs = mongoose.model("bookShelf", shelfSchema);
 
 //Insert the bookShelf
 app.post('/insertShelf', express.urlencoded({extended:true}), async (req, res) => {
-    const {number_shelf,category,book_id, stock} = req.body
-    const splitBook = book_id.split('\n') 
+    const {number_shelf,category,book_id, stock, time} = req.body
+    const splitBook = book_id.split(',')
+    //make array for save id books
+    let arrBook = []
+    
+    //split stock
+    let stockArr = stock.split(',').map((el) => {return parseInt(el)});
+    console.log(stockArr)
+    
+    splitBook.forEach((book,index)=>{
+        arrBook.push({
+            list_id: mongoose.Types.ObjectId(book),
+            stock:stockArr[index],
+            add: new Date()
+        })
+    })
+
     const shelf = new bookShelfs(
         {
             number_shelf : number_shelf,
-            category : category,
-            book_id: splitBook.map(param=> mongoose.Types.ObjectId(param)),
-			stock : stock,
-			add : new Date()
-        }
-
-    )
-    const saveShelf = await shelf.save()
-    res.send(saveShelf)
+            category: category,
+            book_id : arrBook,
+            time : time
+        },
+        )
+        const saveShelf = await shelf.save()
+        res.send(saveShelf)
 })
+
 //Book Shelf Show Data
 app.get('/bookShelf', express.urlencoded({extended:true}), async (req, res) => {
     const showBookShelf = await bookShelfs.find()
@@ -72,6 +88,7 @@ app.put('/updateShelf', express.urlencoded({extended:true}), async (req, res) =>
     
     res.send(updateBookShelf)
 })
+
 //delete bookShelf
 app.delete('/deleteShelf', express.urlencoded({extended:true}), async (req, res) => {
     const {id_book} = req.body
