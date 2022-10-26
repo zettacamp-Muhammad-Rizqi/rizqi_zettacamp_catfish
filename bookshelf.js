@@ -1,7 +1,19 @@
-//import Book Schema
-const books = require('./books')
+//expressjs start here
+const express = require('express')
+const app = express()
+const port = 3000
 
-const shelfSchema = new mongoose.Schema({
+//mongoose start here
+const mongoose = require('mongoose')
+
+//Mongose Connections
+async function connected(){
+    await mongoose.connect('mongodb://localhost:27017/zettacamp_batch3');
+}
+connected()
+
+const shelfSchema = new mongoose.Schema(
+	{
     number_shelf : Number,
 	category: String,
 	book_id : [
@@ -10,15 +22,14 @@ const shelfSchema = new mongoose.Schema({
 		}
 	],
   },
- { timestamps : true} 
-  )
+  { timestamps : true} //update created At and update At to timestamps
+)
     
   const bookShelfs = mongoose.model("bookShelf", shelfSchema);
 
 //Insert the bookShelf
 app.post('/insertShelf', express.urlencoded({extended:true}), async (req, res) => {
     const {number_shelf,category,book_id} = req.body
-
     // const insertShelf = await bookShelfs.collection.insertOne(
     //     {
     //         number_shelf,
@@ -31,7 +42,7 @@ app.post('/insertShelf', express.urlencoded({extended:true}), async (req, res) =
 
 	//disarankan oleh Mentor
     const splitBook = book_id.split('\n') 
-    const shelf = new importShelf(
+    const shelf = new bookShelfs(
         {
             number_shelf : number_shelf,
             category : category,
@@ -52,10 +63,10 @@ app.put('/updateShelf', express.urlencoded({extended:true}), async (req, res) =>
     const {id_shelf, book_id} = req.body
     const updateBookShelf = await bookShelfs.findByIdAndUpdate(
         id_shelf,
-        {
-            updated_At : new Date(), //PR Hilangin
+        { 
             book_id
-        }, {
+        }, 
+		{
             new : true //data yang baru dioutput
         }
     )
@@ -79,11 +90,14 @@ app.post('/filter', express.urlencoded({extended:true}), async (req, res) => {
     const filterShelf = await bookShelfs.find(
         {
             book_id : {
-                $in : [filter.toString()]
+                $in : [filter]
             }
         },
     )
     res.send(filterShelf)
-    // console.log(typeof filter)
-    
+})
+
+//Listen port
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
 })
