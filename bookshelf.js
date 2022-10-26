@@ -14,39 +14,38 @@ connected()
 
 const shelfSchema = new mongoose.Schema(
 	{
-    number_shelf : Number,
-	category: String,
-	book_id : [
-		{
-			type : mongoose.Schema.Types.ObjectId
-		}
-	],
-  },
-  { timestamps : true} //update created At and update At to timestamps
+		number_shelf : Number,
+		category: String,
+		book_id : [
+			{
+				books : {
+					type : mongoose.Schema.Types.ObjectId
+				}
+			},
+			{
+				stock : Number
+			},
+			{
+				add : Date
+			}
+		],
+  	},
+  	{ timestamps : true} //update created At and update At to timestamps
 )
     
   const bookShelfs = mongoose.model("bookShelf", shelfSchema);
 
 //Insert the bookShelf
 app.post('/insertShelf', express.urlencoded({extended:true}), async (req, res) => {
-    const {number_shelf,category,book_id} = req.body
-    // const insertShelf = await bookShelfs.collection.insertOne(
-    //     {
-    //         number_shelf,
-    //         category,
-    //         book_id : book_id.split('\n'),
-    //     }
-    // )
-    // const bookShelf = await bookShelfs.findById(insertShelf.insertedId.toString())
-    // res.send(insertShelf)
-
-	//disarankan oleh Mentor
+    const {number_shelf,category,book_id, stock} = req.body
     const splitBook = book_id.split('\n') 
     const shelf = new bookShelfs(
         {
             number_shelf : number_shelf,
             category : category,
-            book_id: splitBook.map(param=> mongoose.Types.ObjectId(param))
+            book_id: splitBook.map(param=> mongoose.Types.ObjectId(param)),
+			stock : stock,
+			add : new Date()
         }
 
     )
