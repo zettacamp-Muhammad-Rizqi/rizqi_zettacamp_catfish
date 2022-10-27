@@ -45,8 +45,7 @@ app.post('/insertShelf', express.urlencoded({extended:true}), async (req, res) =
     let arrBook = []
     
     //split stock
-    let stockArr = stock.split(',').map((el) => {return parseInt(el)});
-    console.log(stockArr)
+    let stockArr = stock.split(',')
     
     splitBook.forEach((book,index)=>{
         arrBook.push({
@@ -68,49 +67,9 @@ app.post('/insertShelf', express.urlencoded({extended:true}), async (req, res) =
         res.send(saveShelf)
 })
 
-//Book Shelf Show Data
-app.get('/bookShelf', express.urlencoded({extended:true}), async (req, res) => {
-    const showBookShelf = await bookShelfs.find()
-    res.send(showBookShelf)
-})
-//Update Data Shelf
-app.put('/updateShelf', express.urlencoded({extended:true}), async (req, res) => {
-    const {id_shelf, book_id} = req.body
-    const updateBookShelf = await bookShelfs.findByIdAndUpdate(
-        id_shelf,
-        { 
-            book_id
-        }, 
-		{
-            new : true //data yang baru dioutput
-        }
-    )
-    
-    res.send(updateBookShelf)
-})
-
-//delete bookShelf
-app.delete('/deleteShelf', express.urlencoded({extended:true}), async (req, res) => {
-    const {id_book} = req.body
-    // const deleteShelf = await bookShelfs.findByIdAndDelete(id_shelf)
-    const deleteBook = await bookShelfs.deleteOne(
-        {
-            book_id : mongoose.Types.ObjectId(id_book)
-        }
-    )
-    res.send(deleteBook)
-})
-//filter
-app.post('/filter', express.urlencoded({extended:true}), async (req, res) => {
-    const {filter} = req.body
-    const filterShelf = await bookShelfs.find(
-        {
-            book_id : {
-                $in : [filter]
-            }
-        },
-    )
-    res.send(filterShelf)
+//Filter using elemMatch
+app.post('/filterShelf', express.urlencoded({extended:true}), async (req, res) => {
+    const {id_shelf, id_book} = req.body
 })
 
 //Listen port
