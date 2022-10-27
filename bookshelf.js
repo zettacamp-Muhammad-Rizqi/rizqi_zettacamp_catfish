@@ -112,15 +112,16 @@ app.put('/updateDate', express.urlencoded({extended:true}), async (req, res) => 
     let {shelf_id, new_date, arr_Filter} = req.body
     shelf_id = mongoose.Types.ObjectId(shelf_id)
     // new_date = mongoose.Schema.Types.Date(new_date)
-    // arr_Filter = mongoose.Schema.Types.Date(arr)
     console.log(shelf_id)
-    const updateDate = await bookShelfs.findByIdAndUpdate(
+    const tanggal = new Date(new_date);
+    const tanggal_arr = new Date(arr_Filter);
+    // return true
+    // arr_Filter = mongoose.Schema.Types.Date(arr)
+    const updateDate = await bookShelfs.updateOne(
         {_id : shelf_id},
         {
             $set : {
-                "book_id.$[element].date" : {
-                    date : new Date(new_date)
-                }
+                "book_id.$[element].date" : tanggal
                 
             }
             
@@ -129,7 +130,7 @@ app.put('/updateDate', express.urlencoded({extended:true}), async (req, res) => 
             arrayFilters: [
                 {
                     "element.date": {
-                        $lte : new Date(arr_Filter)
+                        $lte : tanggal_arr
                     }
                 }
             ]
