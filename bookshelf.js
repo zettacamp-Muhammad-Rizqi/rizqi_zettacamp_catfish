@@ -24,12 +24,17 @@ const shelfSchema = new mongoose.Schema(
 					type : mongoose.Schema.Types.ObjectId,
 				},
                 stock : Number,
-                add : Date,
+                date : Date,
 			},
 			
 			
 		],
-        time : String
+        add : [
+            {
+                time : String,
+                date_add : Date
+            }
+        ]
   	},
   	{ timestamps : true} //update created At and update At to timestamps
 )
@@ -57,7 +62,7 @@ app.post('/insertShelf', express.urlencoded({extended:true}), async (req, res) =
         arrBook.push({
             list_id: mongoose.Types.ObjectId(book),
             stock:stockArr[index],
-            add: new Date()
+            date: new Date()
         })
     })
 
@@ -66,7 +71,12 @@ app.post('/insertShelf', express.urlencoded({extended:true}), async (req, res) =
             number_shelf : number_shelf,
             category: category,
             book_id : arrBook,
-            time : time
+            add : [
+                {
+                    time : time,
+                    date_add : new Date()
+                }
+            ]
         },
         )
         const saveShelf = await shelf.save()
@@ -98,7 +108,35 @@ app.get('/distinct', express.urlencoded({extended:true}), async (req, res) => {
 })
 
 //update the data inside and array of objects using arrayFilter
-
+app.put('/updateDate', express.urlencoded({extended:true}), async (req, res) => {
+    let {shelf_id, new_date, arr_Filter} = req.body
+    shelf_id = mongoose.Types.ObjectId(shelf_id)
+    // new_date = mongoose.Schema.Types.Date(new_date)
+    // arr_Filter = mongoose.Schema.Types.Date(arr)
+    console.log(shelf_id)
+    const updateDate = await bookShelfs.findByIdAndUpdate(
+        {_id : shelf_id},
+        {
+            $set : {
+                "book_id.$[element].date" : {
+                    date : new Date(new_date)
+                }
+                
+            }
+            
+        },
+        {
+            arrayFilters: [
+                {
+                    "element.date": {
+                        $lte : new Date(arr_Filter)
+                    }
+                }
+            ]
+        }
+    )
+    res.send(updateDate)
+})
 
 
 //Listen port
