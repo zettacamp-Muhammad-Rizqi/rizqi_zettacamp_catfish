@@ -81,13 +81,25 @@ app.post('/filterShelf', express.urlencoded({extended:true}), async (req, res) =
         {
             book_id : {
                 $elemMatch : {
-                    list_id : splitId
+                    list_id : {
+                        $in : splitId
+                    }
                 }
             }
         }
     )
     res.send(filterShelf)
 })
+
+//Test Dintinct for look the unique value
+app.get('/distinct', express.urlencoded({extended:true}), async (req, res) => {
+    const filterDistinct = await bookShelfs.distinct("book_id.list_id")
+    res.send(filterDistinct)
+})
+
+//update the data inside and array of objects using arrayFilter
+
+
 
 //Listen port
 app.listen(port, () => {
