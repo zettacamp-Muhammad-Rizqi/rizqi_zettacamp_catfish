@@ -37,7 +37,13 @@ const shelfSchema = new mongoose.Schema(
 //Model Schema
 const bookShelfs = mongoose.model("bookShelf", shelfSchema);
 
-//Insert the bookShelf
+//Book Shelf Show Data
+app.get('/bookShelf', express.urlencoded({extended:true}), async (req, res) => {
+    const showBookShelf = await bookShelfs.find()
+    res.send(showBookShelf)
+})
+
+//Insert the bookShelf with array push
 app.post('/insertShelf', express.urlencoded({extended:true}), async (req, res) => {
     const {number_shelf,category,book_id, stock, time} = req.body
     const splitBook = book_id.split(',')
@@ -69,7 +75,18 @@ app.post('/insertShelf', express.urlencoded({extended:true}), async (req, res) =
 
 //Filter using elemMatch
 app.post('/filterShelf', express.urlencoded({extended:true}), async (req, res) => {
-    const {id_shelf, id_book} = req.body
+    const {list_id} = req.body
+    const splitId = list_id.split(',')
+    const filterShelf = await bookShelfs.find(
+        {
+            book_id : {
+                $elemMatch : {
+                    list_id : splitId
+                }
+            }
+        }
+    )
+    res.send(filterShelf)
 })
 
 //Listen port
