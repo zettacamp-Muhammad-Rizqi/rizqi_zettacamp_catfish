@@ -111,12 +111,10 @@ app.get('/distinct', express.urlencoded({extended:true}), async (req, res) => {
 app.put('/updateDate', express.urlencoded({extended:true}), async (req, res) => {
     let {shelf_id, new_date, arr_Filter} = req.body
     shelf_id = mongoose.Types.ObjectId(shelf_id)
-    // new_date = mongoose.Schema.Types.Date(new_date)
-    console.log(shelf_id)
+
     const tanggal = new Date(new_date);
     const tanggal_arr = new Date(arr_Filter);
-    // return true
-    // arr_Filter = mongoose.Schema.Types.Date(arr)
+
     const updateDate = await bookShelfs.updateOne(
         {_id : shelf_id},
         {
@@ -138,6 +136,39 @@ app.put('/updateDate', express.urlencoded({extended:true}), async (req, res) => 
     )
     res.send(updateDate)
 })
+
+//Update date_add //Still Error can't modified date_add
+app.put('/updateDateAdd', express.urlencoded({extended:true}), async (req, res) => {
+    let {shelf_add, new_dateAdd, filterAdd} = req.body
+    shelf_add = mongoose.Types.ObjectId(shelf_add)
+
+    console.log(shelf_add)
+
+    const date_new = new Date(new_dateAdd);
+    const date_filter = new Date(filterAdd);
+    const updateDateAdd = await bookShelfs.updateOne(
+        {_id : shelf_add},
+        {
+            $set : {
+                "add.$[element].date_add.date_add" : date_new
+                
+            }
+            
+        },
+        {
+            arrayFilters: [
+                {
+                    "element.date_add.date_add": {
+                        $lte : date_filter
+                    }
+                }
+            ]
+        }
+    )
+    res.send(updateDateAdd)
+})
+
+
 
 
 //Listen port
