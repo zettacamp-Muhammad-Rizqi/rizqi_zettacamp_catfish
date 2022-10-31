@@ -1,5 +1,6 @@
-# Detail task MongoDB Day 5
+# Detail task MongoDB Day 6
 ## Use the existing book collection from your previous tasks, then:
-1. Try projection query to only display some of the fields
-2. Try addFields query to display additional fields that not really exists in the collection
-Use the existing bookshelf collection from your previous tasks, then try an unwind query to split the value of each book
+- Try filter using match query
+- Try to use sorting query
+- Try to combine some fields with concat query
+Use the existing bookshelf collection from your previous tasks, then try a lookup query to join with the book collection.
