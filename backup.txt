@@ -1,0 +1,222 @@
+//Copy from NoSQLBooster for MongoDB free edition. This message does not appear if you are using a registered version.
+
+{
+  "_id": "635b9639b27e11381320b622",
+  "title": "Detective Conan",
+  "author": "Aoyama Gosho",
+  "date_published": "2022-10-28T08:43:37.994Z",
+  "price": 25000,
+  "stock": 20,
+  "createdAt": "2022-10-28T08:43:37.995Z",
+  "updatedAt": "2022-10-28T08:43:37.995Z",
+  "__v": 0
+},
+{
+  "_id": "635b9629b27e11381320b620",
+  "title": "Percy Jackson",
+  "author": "Gilbert",
+  "date_published": "2022-10-28T08:43:21.667Z",
+  "price": 250000,
+  "stock": 30,
+  "createdAt": "2022-10-28T08:43:21.669Z",
+  "updatedAt": "2022-10-28T08:43:21.669Z",
+  "__v": 0
+},
+{
+  "_id": "635b960fb27e11381320b61e",
+  "title": "Naruto",
+  "author": "Kondo",
+  "date_published": "2022-10-28T08:42:55.023Z",
+  "price": 25000,
+  "stock": 30,
+  "createdAt": "2022-10-28T08:42:55.024Z",
+  "updatedAt": "2022-10-28T08:42:55.024Z",
+  "__v": 0
+},
+{
+  "_id": "635b9600b27e11381320b61c",
+  "title": "One Piece",
+  "author": "Kuro Sensei",
+  "date_published": "2022-10-28T08:42:40.605Z",
+  "price": 25000,
+  "stock": 43,
+  "createdAt": "2022-10-28T08:42:40.607Z",
+  "updatedAt": "2022-10-28T08:42:40.607Z",
+  "__v": 0
+},
+{
+  "_id": "635b95f1b27e11381320b61a",
+  "title": "Ansatsu Kyoushitsu",
+  "author": "Sensei Nagami",
+  "date_published": "2022-10-28T08:42:25.713Z",
+  "price": 25000,
+  "stock": 10,
+  "createdAt": "2022-10-28T08:42:25.715Z",
+  "updatedAt": "2022-10-28T08:42:25.715Z",
+  "__v": 0
+},
+{
+  "_id": "635b95e3b27e11381320b618",
+  "title": "Mortal Kombat",
+  "author": "Aoyama",
+  "date_published": "2022-10-28T08:42:11.107Z",
+  "price": 25000,
+  "stock": 29,
+  "createdAt": "2022-10-28T08:42:11.108Z",
+  "updatedAt": "2022-10-28T08:42:11.108Z",
+  "__v": 0
+},
+{
+  "_id": "635b95d3b27e11381320b616",
+  "title": "Netherland",
+  "author": "Charlotte",
+  "date_published": "2022-10-28T08:41:55.687Z",
+  "price": 20000,
+  "stock": 27,
+  "createdAt": "2022-10-28T08:41:55.690Z",
+  "updatedAt": "2022-10-28T08:41:55.690Z",
+  "__v": 0
+},
+{
+  "_id": "635b95c7b27e11381320b614",
+  "title": "Hampa Rasa",
+  "author": "Redy",
+  "date_published": "2022-10-28T08:41:43.079Z",
+  "price": 100000,
+  "stock": 25,
+  "createdAt": "2022-10-28T08:41:43.080Z",
+  "updatedAt": "2022-10-28T08:41:43.080Z",
+  "__v": 0
+},
+{
+  "_id": "635b95b7b27e11381320b612",
+  "title": "Empty brain",
+  "author": "Cisi",
+  "date_published": "2022-10-28T08:41:27.501Z",
+  "price": 100000,
+  "stock": 34,
+  "createdAt": "2022-10-28T08:41:27.503Z",
+  "updatedAt": "2022-10-28T08:41:27.503Z",
+  "__v": 0
+},
+{
+  "_id": "635b95a9b27e11381320b610",
+  "title": "Hunted",
+  "author": "Claude",
+  "date_published": "2022-10-28T08:41:13.604Z",
+  "price": 200000,
+  "stock": 17,
+  "createdAt": "2022-10-28T08:41:13.605Z",
+  "updatedAt": "2022-10-28T08:41:13.605Z",
+  "__v": 0
+},
+{
+  "_id": "635b959bb27e11381320b60e",
+  "title": "Jhon Whick",
+  "author": "Von",
+  "date_published": "2022-10-28T08:40:59.198Z",
+  "price": 200000,
+  "stock": 15,
+  "createdAt": "2022-10-28T08:40:59.201Z",
+  "updatedAt": "2022-10-28T08:40:59.201Z",
+  "__v": 0
+},
+{
+  "_id": "635b958eb27e11381320b60c",
+  "title": "Golden Time",
+  "author": "Jhon Chena",
+  "date_published": "2022-10-28T08:40:46.411Z",
+  "price": 180000,
+  "stock": 20,
+  "createdAt": "2022-10-28T08:40:46.413Z",
+  "updatedAt": "2022-10-28T08:40:46.413Z",
+  "__v": 0
+},
+{
+  "_id": "635b9577b27e11381320b60a",
+  "title": "Golden Compass",
+  "author": "Virkof Housen",
+  "date_published": "2022-10-28T08:40:23.149Z",
+  "price": 200000,
+  "stock": 40,
+  "createdAt": "2022-10-28T08:40:23.152Z",
+  "updatedAt": "2022-10-28T08:40:23.152Z",
+  "__v": 0
+},
+{
+  "_id": "635b9567b27e11381320b608",
+  "title": "Hunter x Hunter",
+  "author": "Akiyama Outo",
+  "date_published": "2022-10-28T08:40:07.093Z",
+  "price": 35000,
+  "stock": 8,
+  "createdAt": "2022-10-28T08:40:07.095Z",
+  "updatedAt": "2022-10-28T08:40:07.095Z",
+  "__v": 0
+},
+{
+  "_id": "635b9558b27e11381320b606",
+  "title": "Samurai",
+  "author": "Angelica Jordan",
+  "date_published": "2022-10-28T08:39:52.637Z",
+  "price": 100000,
+  "stock": 7,
+  "createdAt": "2022-10-28T08:39:52.638Z",
+  "updatedAt": "2022-10-28T08:39:52.638Z",
+  "__v": 0
+},
+{
+  "_id": "635b953bb27e11381320b604",
+  "title": "Wish Dragon",
+  "author": "Hua Li",
+  "date_published": "2022-10-28T08:39:23.432Z",
+  "price": 50000,
+  "stock": 6,
+  "createdAt": "2022-10-28T08:39:23.434Z",
+  "updatedAt": "2022-10-28T08:39:23.434Z",
+  "__v": 0
+},
+{
+  "_id": "635b952eb27e11381320b602",
+  "title": "Hancock",
+  "author": "Shraud",
+  "date_published": "2022-10-28T08:39:10.041Z",
+  "price": 70000,
+  "stock": 9,
+  "createdAt": "2022-10-28T08:39:10.043Z",
+  "updatedAt": "2022-10-28T08:39:10.043Z",
+  "__v": 0
+},
+{
+  "_id": "635b951cb27e11381320b600",
+  "title": "Matrix",
+  "author": "Midgard",
+  "date_published": "2022-10-28T08:38:52.144Z",
+  "price": 90000,
+  "stock": 12,
+  "createdAt": "2022-10-28T08:38:52.145Z",
+  "updatedAt": "2022-10-28T08:38:52.145Z",
+  "__v": 0
+},
+{
+  "_id": "635b9508b27e11381320b5fe",
+  "title": "Hive",
+  "author": "Muchollins",
+  "date_published": "2022-10-28T08:38:32.805Z",
+  "price": 65000,
+  "stock": 10,
+  "createdAt": "2022-10-28T08:38:32.807Z",
+  "updatedAt": "2022-10-28T08:38:32.807Z",
+  "__v": 0
+},
+{
+  "_id": "635b94f6b27e11381320b5fc",
+  "title": "The Mortal Instrument",
+  "author": "J Coff",
+  "date_published": "2022-10-28T08:38:14.903Z",
+  "price": 200000,
+  "stock": 5,
+  "createdAt": "2022-10-28T08:38:14.919Z",
+  "updatedAt": "2022-10-28T08:38:14.919Z",
+  "__v": 0
+}

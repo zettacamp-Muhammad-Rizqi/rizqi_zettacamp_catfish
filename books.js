@@ -3,8 +3,10 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-//mongoose start here
+//require
 const mongoose = require('mongoose')
+const bookShelfs = require('./bookshelf')
+require('./bookshelf')
 
 //Mongose Connections
 async function connected(){
@@ -66,6 +68,84 @@ app.get("/totalPrice",async(req,res)=>{
         }
       ])
       res.send(addField)
+});
+
+//MongoDB Day 6
+//Filter using match, sort, and concat
+app.post("/filterPrice",express.urlencoded({extended:true}),async(req,res)=>{
+    let {price, sorting} = req.body;
+
+    if(sorting==="ascending"){
+        const priceFilter = await books.aggregate([
+            {
+                $match: {
+                    price : parseInt(price)
+                }
+            },
+            {
+                $sort :{
+                    title : 1
+                }
+            },
+            {
+                $project:{
+                    _id:0,
+                    book_Price:{
+                        $concat:["$title", " by ", "$author"]
+                    },
+                    stock:1
+                }
+            }
+        ])
+        res.send(priceFilter)
+    }else if(sorting==="descending"){
+        const priceFilter2 = await books.aggregate([
+            {
+                $match: {
+                    price : parseInt(price)
+                }
+            },
+            {
+                $sort :{
+                    title : -1
+                }
+            },
+            {
+                $project:{
+                    _id:0,
+                    book_Price:{
+                        $concat:["$title", " by ", "$author"]
+                    },
+                    stock:1
+                }
+            }
+        ])
+        res.send(priceFilter2)
+    } else{
+        res.send(Error)
+    }
+});
+
+//lookup
+app.get("/lookup",express.urlencoded({extended:true}),async(req,res)=>{
+    const lookupBook = bookShelfs.aggregate([
+        {
+            $lookup:{
+                from : "books",
+                localField : "book_id.list_id",
+                foreignField : "_id",
+                as : "list_book"
+            }
+        },
+        {
+            $project:{
+                bookk_id:0,
+                "list_book.createdAt":0,
+                "list_book.updatedAt":0,
+                "list_book.__v":0
+            }
+        } 
+    ])
 });
 
 //Listen port
