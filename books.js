@@ -152,10 +152,12 @@ app.get("/lookup",express.urlencoded({extended:true}),async(req,res)=>{
 //pagination
 app.post("/pagination",express.urlencoded({extended:true}),async(req,res)=>{
     let {page, limit} = req.body
+
     page = parseInt(page)-1 //start from zero
     limit = parseInt(limit)
+
     if(page<0){
-        page = 1
+        page = 1 // the page start from 1
     }
     const pagination = await books.aggregate([
         
@@ -182,6 +184,30 @@ app.post("/pagination",express.urlencoded({extended:true}),async(req,res)=>{
         }
     ])
     res.send(pagination)
+});
+
+//facet
+app.get("/facet",express.urlencoded({extended:true}),async(req,res)=>{
+    const facet = await books.aggregate([
+        {
+           $facet: {
+            "category_by_price": [
+                {
+                    $group:{
+                   _id: "$price",
+                   title: {
+                       $push: "$title"
+                   },
+                   many : {
+                       $sum: 1
+                   }
+                  }
+                }
+            ]
+           }
+        }
+    ])
+    res.send(facet)
 });
 
 
