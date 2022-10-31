@@ -149,6 +149,43 @@ app.get("/lookup",express.urlencoded({extended:true}),async(req,res)=>{
     res.send(lookupBook)
 });
 
+//pagination
+app.post("/pagination",express.urlencoded({extended:true}),async(req,res)=>{
+    let {page, limit} = req.body
+    page = parseInt(page)-1 //start from zero
+    limit = parseInt(limit)
+    if(page<0){
+        page = 1
+    }
+    const pagination = await books.aggregate([
+        
+        {
+            $skip: page*limit
+        },
+        {
+            $limit: limit
+        },
+        {
+            $group: {
+                _id: ["$title","$author","$stock"]
+            }
+        },
+        {
+            $addFields: {
+                page: {
+                    $sum: [
+
+                        page, 1
+                    ]
+                }
+            }
+        }
+    ])
+    res.send(pagination)
+});
+
+
+
 //Listen port
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
