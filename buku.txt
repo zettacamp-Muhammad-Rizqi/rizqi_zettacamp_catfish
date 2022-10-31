@@ -30,3 +30,17 @@ Movie
 
 Biography
 63565353148e73f676d54675
+
+// db.books.deleteMany({})
+
+db.books.find({})
+
+db.books.aggregate([
+    {
+        $addFields : {
+            total_price : {
+                $multiply : ["$stock","$price"]
+            }
+        }
+    }
+])

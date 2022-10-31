@@ -137,20 +137,22 @@ app.put('/updateDate', express.urlencoded({extended:true}), async (req, res) => 
     res.send(updateDate)
 })
 
-//Update date_add //Still Error can't modified date_add
-app.put('/updateDateAdd', express.urlencoded({extended:true}), async (req, res) => {
+//Update date_add Error Fixed
+app.put('/updateAddDate', express.urlencoded({extended:true}), async (req, res) => {
     let {shelf_add, new_dateAdd, filterAdd} = req.body
     shelf_add = mongoose.Types.ObjectId(shelf_add)
 
     console.log(shelf_add)
+    // return
 
     const date_new = new Date(new_dateAdd);
     const date_filter = new Date(filterAdd);
+
     const updateDateAdd = await bookShelfs.updateOne(
         {_id : shelf_add},
         {
             $set : {
-                "add.$[element].date_add.date_add" : date_new
+                "add.$[element].date_add" : date_new
                 
             }
             
@@ -158,7 +160,7 @@ app.put('/updateDateAdd', express.urlencoded({extended:true}), async (req, res) 
         {
             arrayFilters: [
                 {
-                    "element.date_add.date_add": {
+                    "element.date_add": {
                         $lte : date_filter
                     }
                 }
@@ -168,6 +170,21 @@ app.put('/updateDateAdd', express.urlencoded({extended:true}), async (req, res) 
     res.send(updateDateAdd)
 })
 
+//aggregate with unwind
+app.get("/unwind",async(req,res)=>{
+    const unwind = await bookShelfs.aggregate([
+        {
+            $unwind : "$book_id"
+        },
+        {
+            $project : {
+                book_id:1,
+                _id:0
+            }
+        }
+    ])
+    res.send(unwind)
+});
 
 
 

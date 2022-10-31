@@ -50,7 +50,7 @@ app.post('/insertBook', express.urlencoded({extended:true}), async (req, res) =>
 })
 
 //aggregate addFields for multiply stock and price
-app.get("/addFields",async(req,res)=>{
+app.get("/totalPrice",async(req,res)=>{
 
       const addField= await books.aggregate([
         {
@@ -59,33 +59,13 @@ app.get("/addFields",async(req,res)=>{
               $multiply:["$stock","$price"]
             }
           }
+        },
+        {
+            $project :{_id:0, title:1, stock:1, price:1, total_price:1}
+            
         }
       ])
       res.send(addField)
-});
-
-//aggregate with project
-app.post("/project",async(req,res)=>{
-    const {find} = req.body
-    if(find){
-        const findTitle = await books.aggregate([
-            {
-                $match:{
-                    title: find
-                }
-            }
-        ])
-        res.send(findTitle)
-    }else{
-        const findTitle2 = await books.aggregate([
-            {
-                $project:{
-                    title:1, date_published:1
-                }
-            }
-        ])
-        res.send(findTitle2)
-    }
 });
 
 //Listen port
