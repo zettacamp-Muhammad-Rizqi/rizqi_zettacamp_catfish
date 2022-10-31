@@ -87,13 +87,13 @@ app.post('/insertShelf', express.urlencoded({extended:true}), async (req, res) =
 //Filter using elemMatch
 app.post('/filterShelf', express.urlencoded({extended:true}), async (req, res) => {
     const {list_id} = req.body
-    const splitId = list_id.split(',')
+    // const splitId = list_id.split(',')
     const filterShelf = await bookShelfs.find(
         {
             book_id : {
                 $elemMatch : {
                     list_id : {
-                        $in : splitId
+                        $in : list_id
                     }
                 }
             }

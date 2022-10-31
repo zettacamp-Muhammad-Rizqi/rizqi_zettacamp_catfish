@@ -155,7 +155,7 @@ app.post("/pagination",express.urlencoded({extended:true}),async(req,res)=>{
 
     page = parseInt(page)-1 //start from zero
     limit = parseInt(limit)
-
+    //PR page nya kurang pas masih, saran page ga usah
     if(page<0){
         page = 1 // the page start from 1
     }
