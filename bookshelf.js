@@ -1,7 +1,8 @@
-//expressjs start here
-const express = require('express')
-const app = express()
-const port = 3000
+// //expressjs start here
+// const express = require('express')
+// const app = express()
+const {app, express} = require('./express')
+const port = 8000
 
 //mongoose start here
 const mongoose = require('mongoose')
@@ -186,11 +187,9 @@ app.get("/unwind",async(req,res)=>{
     res.send(unwind)
 });
 
-
-
 //Listen port
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
 
-module.exports = bookShelfs
+module.exports = {bookShelfs}

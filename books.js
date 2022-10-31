@@ -1,12 +1,12 @@
-//expressjs start here
-const express = require('express')
-const app = express()
+// //expressjs start here
+// const express = require('express')
+// // const app = express()
+const {app, express} = require('./express')
 const port = 3000
 
-//require
+//require express
 const mongoose = require('mongoose')
-const bookShelfs = require('./bookshelf')
-require('./bookshelf')
+const {bookShelfs} = require('./bookshelf')
 
 //Mongose Connections
 async function connected(){
@@ -128,7 +128,7 @@ app.post("/filterPrice",express.urlencoded({extended:true}),async(req,res)=>{
 
 //lookup
 app.get("/lookup",express.urlencoded({extended:true}),async(req,res)=>{
-    const lookupBook = bookShelfs.aggregate([
+    const lookupBook = await bookShelfs.aggregate([
         {
             $lookup:{
                 from : "books",
@@ -139,16 +139,17 @@ app.get("/lookup",express.urlencoded({extended:true}),async(req,res)=>{
         },
         {
             $project:{
-                bookk_id:0,
+                book_id:0,
                 "list_book.createdAt":0,
                 "list_book.updatedAt":0,
                 "list_book.__v":0
             }
         } 
     ])
+    res.send(lookupBook)
 });
 
 //Listen port
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
-})
+ })
