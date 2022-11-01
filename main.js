@@ -30,7 +30,7 @@ app.post('/insertSong', express.urlencoded({extended:true}), async (req, res) =>
 app.post('/insertPlaylist', express.urlencoded({extended:true}), async (req, res) => {
     const {name, list_songs} = req.body
     const splitSong = list_songs.split(',')
-    //make array for save id books
+    //make array for save id songs
     let arrSong = []
     
     splitSong.forEach((song)=>{
@@ -61,11 +61,11 @@ app.get('/playlist', express.urlencoded({extended:true}), async (req, res) => {
 })
 
 //Update
-app.post('/updateSong', express.urlencoded({extended:true}), async (req, res) => {
-    let {_id, title, artist, duration, genre} = req.body
+app.put('/updateSong', express.urlencoded({extended:true}), async (req, res) => {
+    let {id_song, title, artist, duration, genre} = req.body
     const updateSong = await songs.findByIdAndUpdate(
         {
-            _id : _id
+            _id : id_song
         },
         {
             $set : {
@@ -74,14 +74,175 @@ app.post('/updateSong', express.urlencoded({extended:true}), async (req, res) =>
                 duration : duration,
                 genre : genre
             }
+        },
+        {
+            new : true
         }
     )
     res.send(updateSong)
 })
 
-app.post('/updatePlaylist', express.urlencoded({extended:true}), async (req, res) => {
-    //on progress
+app.put('/updatePlaylist', express.urlencoded({extended:true}), async (req, res) => {
+    let {id_playlist, name, id_song} = req.body
+    let splitSong = id_song.split(',')
+    const arrSong = []
+
+    splitSong.forEach((song)=>{
+        arrSong.push({
+            songs_id: mongoose.Types.ObjectId(song),
+            date: new Date()
+        })
+    })
+
+    const updatePlaylist = await playlists.updateOne(
+        {
+            _id : mongoose.Types.ObjectId(id_playlist)
+        },
+        {
+            $set:{
+                name : name,
+                list_songs : arrSong
+            }
+        }
+        
+    )
+    res.send(updatePlaylist)
 })
+
+//delete
+app.delete('/deleteSong', express.urlencoded({extended:true}), async (req, res) => {
+    let {id_song} = req.body
+    const deleteSong = await songs.deleteOne(
+        {
+            id_song
+        }
+    )
+    res.send(deleteSong)
+})
+app.delete('/deletePlaylist', express.urlencoded({extended:true}), async (req, res) => {
+    let {id_playlist} = req.body
+    const deletePlaylist = await playlists.deleteOne(
+        {
+            id_playlist
+        },
+        {
+            new:true
+        }
+    )
+    res.send(deletePlaylist)
+})
+
+//Aggregate with sort
+app.get("/sort",express.urlencoded({extended:true}),async(req,res)=>{
+    let{name} = req.body
+    const sortPlaylist = await playlists.aggregate([
+        {
+            $lookup:{
+                from : "songs",
+                localField : "list_songs.songs_id",
+                foreignField : "_id",
+                as : "list_songs"
+            }
+        },
+        {
+            $sort:{
+                name : parseInt(name)
+            }
+        },
+        {
+            $project:{
+                songs_id:0,
+                "list_songs.createdAt":0,
+                "list_songs.updatedAt":0,
+                "list_songs.__v":0
+            }
+        } 
+    ])
+    res.send(sortPlaylist)
+});
+
+//pagination
+app.post("/pagination",express.urlencoded({extended:true}),async(req,res)=>{
+    let {page, limit} = req.body
+
+    page = parseInt(page)-1 //start from zero
+    limit = parseInt(limit)
+    
+    if(page<0){
+        page = 1 // the page start from 1
+    }
+    const pagination = await songs.aggregate([
+        
+        
+        {
+            $skip: page*limit
+        },
+        {
+            $limit: limit
+        },
+        {
+            $group: {
+                _id: ["$title","$artist","$duration"]
+            }
+        },
+        {
+            $addFields: {
+                page: {
+                    $sum: [
+
+                        page, 1
+                    ]
+                }
+            }
+        }
+    ])
+    res.send(pagination)
+});
+
+//match artist
+app.post("/matchArtist",express.urlencoded({extended:true}),async(req,res)=>{
+    let{artist} = req.body
+    const findArtist = await songs.aggregate([
+        {
+            $match:{
+                artist :  artist
+            }
+        },
+        {
+            $group: {
+                _id: ["$title","$artist","$duration"]
+            }
+        },
+    ])
+    res.send(findArtist)
+});
+
+//faced
+app.get("/facet",express.urlencoded({extended:true}),async(req,res)=>{
+    const facet = await songs.aggregate([
+        {
+           $facet: {
+            "category_by_price": [
+                {
+                    $group:{
+                   _id: "$genre",
+                   title: {
+                       $push: "$title"
+                   },
+                   many : {
+                       $sum: 1
+                   }
+                  }
+                }
+            ]
+           }
+        }
+    ])
+    res.send(facet)
+});
+
+
+
 
 //Listen Port
 app.listen(port, () => {

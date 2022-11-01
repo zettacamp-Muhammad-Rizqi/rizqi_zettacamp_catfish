@@ -151,5 +151,124 @@
   "__v": 0
 }
 
-New Add
-63609986ca61d3e332a4a8ec - pop
+//Playlist
+//Copy from NoSQLBooster for MongoDB free edition. This message does not appear if you are using a registered version.
+
+{
+  "_id": "6360970795f8e58ea29de368",
+  "name": "Country Songs",
+  "list_songs": [
+    {
+      "songs_id": "63608e4d4ff2c0a0720c05d3",
+      "date": "2022-11-01T03:48:23.551Z"
+    },
+    {
+      "songs_id": "63608e5d4ff2c0a0720c05d5",
+      "date": "2022-11-01T03:48:23.551Z"
+    },
+    {
+      "songs_id": "63608e734ff2c0a0720c05d7",
+      "date": "2022-11-01T03:48:23.551Z"
+    }
+  ],
+  "createdAt": "2022-11-01T03:48:23.555Z",
+  "updatedAt": "2022-11-01T03:48:23.555Z",
+  "__v": 0
+},
+{
+  "_id": "636096c995f8e58ea29de366",
+  "name": "Rap Songs",
+  "list_songs": [
+    {
+      "songs_id": "63608dec4ff2c0a0720c05cb",
+      "date": "2022-11-01T03:47:21.461Z"
+    },
+    {
+      "songs_id": "63608dff4ff2c0a0720c05cd",
+      "date": "2022-11-01T03:47:21.461Z"
+    },
+    {
+      "songs_id": "63608e0d4ff2c0a0720c05cf",
+      "date": "2022-11-01T03:47:21.461Z"
+    }
+  ],
+  "createdAt": "2022-11-01T03:47:21.467Z",
+  "updatedAt": "2022-11-01T03:47:21.467Z",
+  "__v": 0
+},
+{
+  "_id": "6360969895f8e58ea29de364",
+  "name": "EDM Songs",
+  "list_songs": [
+    {
+      "songs_id": "63608d464ff2c0a0720c05c1",
+      "date": "2022-11-01T03:46:32.242Z"
+    },
+    {
+      "songs_id": "63608d8e4ff2c0a0720c05c5",
+      "date": "2022-11-01T03:46:32.243Z"
+    }
+  ],
+  "createdAt": "2022-11-01T03:46:32.245Z",
+  "updatedAt": "2022-11-01T03:46:32.245Z",
+  "__v": 0
+},
+{
+  "_id": "6360961995f8e58ea29de362",
+  "name": "Dangdut Songs",
+  "list_songs": [
+    {
+      "songs_id": "63608d274ff2c0a0720c05bf",
+      "date": "2022-11-01T03:44:25.686Z"
+    },
+    {
+      "songs_id": "63608dc04ff2c0a0720c05c7",
+      "date": "2022-11-01T03:44:25.686Z"
+    }
+  ],
+  "createdAt": "2022-11-01T03:44:25.689Z",
+  "updatedAt": "2022-11-01T03:44:25.689Z",
+  "__v": 0
+},
+{
+  "_id": "636095de95f8e58ea29de360",
+  "name": "Pop Songs",
+  "list_songs": [
+    {
+      "songs_id": "63608c934ff2c0a0720c05b9",
+      "date": "2022-11-01T03:43:26.543Z"
+    },
+    {
+      "songs_id": "63608cc44ff2c0a0720c05bb",
+      "date": "2022-11-01T03:43:26.543Z"
+    },
+    {
+      "songs_id": "63608dd54ff2c0a0720c05c9",
+      "date": "2022-11-01T03:43:26.543Z"
+    }
+  ],
+  "createdAt": "2022-11-01T03:43:26.547Z",
+  "updatedAt": "2022-11-01T03:43:26.547Z",
+  "__v": 0
+},
+{
+  "_id": "6360956795f8e58ea29de35e",
+  "name": "Jazz Songs",
+  "list_songs": [
+    {
+      "songs_id": "63608d124ff2c0a0720c05bd",
+      "date": "2022-11-01T03:41:27.109Z"
+    },
+    {
+      "songs_id": "63608e284ff2c0a0720c05d1",
+      "date": "2022-11-01T03:41:27.109Z"
+    }
+  ],
+  "createdAt": "2022-11-01T03:41:27.132Z",
+  "updatedAt": "2022-11-01T03:41:27.132Z",
+  "__v": 0
+}
+
+New Add Song
+6360c9a0cdf39efe48bca782 - pop
+6360c9ebcdf39efe48bca787 - playlists Pop
