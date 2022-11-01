@@ -242,7 +242,8 @@ app.get("/facet",express.urlencoded({extended:true}),async(req,res)=>{
 });
 
 
-
+//Perbaiki faced untuk include si pagination di dalam faced
+//terus buat untuk filter-filter yang lain di dalam facet yang di lookup
 
 //Listen Port
 app.listen(port, () => {
