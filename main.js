@@ -132,7 +132,7 @@ app.delete('/deletePlaylist', express.urlencoded({extended:true}), async (req, r
     res.send(deletePlaylist)
 })
 
-//Aggregate with sort
+//Aggregate lookup with sort
 app.get("/sort",express.urlencoded({extended:true}),async(req,res)=>{
     let{name} = req.body
     const sortPlaylist = await playlists.aggregate([
