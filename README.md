@@ -1,5 +1,13 @@
-# TASK Final JS Day 9
-Final task of JavaScript. Will include all previous day's learning:
-1. Transform playlist management functions into REST API
-2. Create endpoint to receive JWT to generate token with lifetime of 1 hour
-3. Implement JWT authentication with Bearer token for every endpoint except endpoint to receive JWT
+# TASK Final MongoDB Day 8
+Final task of MongoDB. Will include all previous day's learning:
+1. Update your playlist management to connect with MongoDB using mongoose & have collection for song playlist
+2. Update your playlist management to have song’s collection & have relation with playlist’s collection
+3. Update your playlist management to have CRUD for song & playlist
+4. Update your playlist management to have aggregation on API get all song & get all playlist with at least query:
+   - $match
+   - $sort
+   - $lookup
+   - $facet
+   - $group
+   - $skip
+   - $limit
