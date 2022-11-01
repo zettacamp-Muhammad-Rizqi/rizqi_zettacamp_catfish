@@ -1,0 +1,155 @@
+//Copy from NoSQLBooster for MongoDB free edition. This message does not appear if you are using a registered version.
+
+{
+  "_id": "63608c934ff2c0a0720c05b9",
+  "title": "The Color Violet",
+  "artist": "Tory Lanez",
+  "duration": 4,
+  "genre": "pop",
+  "createdAt": "2022-11-01T03:03:47.093Z",
+  "updatedAt": "2022-11-01T03:03:47.093Z",
+  "__v": 0
+},
+{
+  "_id": "63608cc44ff2c0a0720c05bb",
+  "title": "You Belong With Me",
+  "artist": "Taylor Swift",
+  "duration": 3,
+  "genre": "pop",
+  "createdAt": "2022-11-01T03:04:36.298Z",
+  "updatedAt": "2022-11-01T03:04:36.298Z",
+  "__v": 0
+},
+{
+  "_id": "63608d124ff2c0a0720c05bd",
+  "title": "The Shadow",
+  "artist": "Blues Cousins",
+  "duration": 10,
+  "genre": "jazz",
+  "createdAt": "2022-11-01T03:05:54.986Z",
+  "updatedAt": "2022-11-01T03:05:54.986Z",
+  "__v": 0
+},
+{
+  "_id": "63608d274ff2c0a0720c05bf",
+  "title": "Begadang",
+  "artist": "Rhoma Irama",
+  "duration": 3,
+  "genre": "dangdut",
+  "createdAt": "2022-11-01T03:06:15.653Z",
+  "updatedAt": "2022-11-01T03:06:15.653Z",
+  "__v": 0
+},
+{
+  "_id": "63608d464ff2c0a0720c05c1",
+  "title": "Faded",
+  "artist": "Alan Walker",
+  "duration": 3,
+  "genre": "edm",
+  "createdAt": "2022-11-01T03:06:46.596Z",
+  "updatedAt": "2022-11-01T03:06:46.596Z",
+  "__v": 0
+},
+{
+  "_id": "63608d8e4ff2c0a0720c05c5",
+  "title": "Sing Me to Sleep",
+  "artist": "Alan Walker",
+  "duration": 3,
+  "genre": "edm",
+  "createdAt": "2022-11-01T03:07:58.953Z",
+  "updatedAt": "2022-11-01T03:07:58.953Z",
+  "__v": 0
+},
+{
+  "_id": "63608dc04ff2c0a0720c05c7",
+  "title": "Judi",
+  "artist": "Rhoma Irama",
+  "duration": 5,
+  "genre": "dangdut",
+  "createdAt": "2022-11-01T03:08:48.186Z",
+  "updatedAt": "2022-11-01T03:08:48.186Z",
+  "__v": 0
+},
+{
+  "_id": "63608dd54ff2c0a0720c05c9",
+  "title": "Tak Pernah Ternilai",
+  "artist": "Last Child",
+  "duration": 5,
+  "genre": "pop",
+  "createdAt": "2022-11-01T03:09:09.409Z",
+  "updatedAt": "2022-11-01T03:09:09.409Z",
+  "__v": 0
+},
+{
+  "_id": "63608dec4ff2c0a0720c05cb",
+  "title": "Rider",
+  "artist": "Saykoji",
+  "duration": 3,
+  "genre": "rap",
+  "createdAt": "2022-11-01T03:09:32.398Z",
+  "updatedAt": "2022-11-01T03:09:32.398Z",
+  "__v": 0
+},
+{
+  "_id": "63608dff4ff2c0a0720c05cd",
+  "title": "Not Afraid",
+  "artist": "Eminem",
+  "duration": 4,
+  "genre": "rap",
+  "createdAt": "2022-11-01T03:09:51.268Z",
+  "updatedAt": "2022-11-01T03:09:51.268Z",
+  "__v": 0
+},
+{
+  "_id": "63608e0d4ff2c0a0720c05cf",
+  "title": "Venom",
+  "artist": "Eminem",
+  "duration": 5,
+  "genre": "rap",
+  "createdAt": "2022-11-01T03:10:05.961Z",
+  "updatedAt": "2022-11-01T03:10:05.961Z",
+  "__v": 0
+},
+{
+  "_id": "63608e284ff2c0a0720c05d1",
+  "title": "What a wonderful World",
+  "artist": "Louis Armstrong",
+  "duration": 2,
+  "genre": "jazz",
+  "createdAt": "2022-11-01T03:10:32.823Z",
+  "updatedAt": "2022-11-01T03:10:32.823Z",
+  "__v": 0
+},
+{
+  "_id": "63608e4d4ff2c0a0720c05d3",
+  "title": "Craving You",
+  "artist": "Thomas Rhett",
+  "duration": 5,
+  "genre": "country",
+  "createdAt": "2022-11-01T03:11:09.444Z",
+  "updatedAt": "2022-11-01T03:11:09.444Z",
+  "__v": 0
+},
+{
+  "_id": "63608e5d4ff2c0a0720c05d5",
+  "title": "Wagon Wheel",
+  "artist": "Darius Rucker",
+  "duration": 5,
+  "genre": "country",
+  "createdAt": "2022-11-01T03:11:25.544Z",
+  "updatedAt": "2022-11-01T03:11:25.544Z",
+  "__v": 0
+},
+{
+  "_id": "63608e734ff2c0a0720c05d7",
+  "title": "Yours If You Want It",
+  "artist": "Rascal Flatts",
+  "duration": 5,
+  "genre": "country",
+  "createdAt": "2022-11-01T03:11:47.357Z",
+  "updatedAt": "2022-11-01T03:11:47.357Z",
+  "__v": 0
+}
+
+New Add
+63609986ca61d3e332a4a8ec - pop

@@ -1,8 +1,6 @@
-//Require
-const {app, port} = require('./express')
+//Require express and mongoose
+const {app, express, port} = require('./express')
 const mongoose = require('mongoose')
-
-
 
 //Mongose Connections
 async function connected(){
@@ -10,115 +8,82 @@ async function connected(){
 }
 connected()
 
-//Array Object for list song
-const songs = [
-    {
-        no : 1,
-        title : "The Color Violet",
-        artist : "Tory Lanez",
-        duration : 4,
-        genre : "pop",
-    },
-    {
-        no : 2,
-        title : "You Belong With Me",
-        artist : "Taylor Swift",
-        duration : 3,
-        genre : "pop",
-    },
-    {
-        no : 3,
-        title : "The Shadow",
-        artist : "Blues Cousins",
-        duration : 10,
-        genre : "jazz",
-    },
-    {
-        no : 4,
-        title : "Begadang",
-        artist : "Rhoma Irama",
-        duration : 3,
-        genre : "dangdut",
-    },
-    {
-        no : 5,
-        title : "Faded",
-        artist : "Alan Walker",
-        duration : 3,
-        genre : "edm",
-    },
-    {
-        no : 6,
-        title : "FadedSing Me to Sleep",
-        artist : "Alan Walker",
-        duration : 3,
-        genre : "edm",
-    },
-    {
-        no : 7,
-        title : "Judi",
-        artist : "Rhoma Irama",
-        duration : 5,
-        genre : "dangdut",
-    },
-    {
-        no : 8,
-        title : "Tak Pernah Ternilai",
-        artist : "Last Child",
-        duration : 5,
-        genre : "pop",
-    },
-    {
-        no : 9,
-        title : "Rider",
-        artist : "Saykoji",
-        duration : 3,
-        genre : "rap",
-    },
-    {
-        no : 10,
-        title : "Not Afraid",
-        artist : "Eminem",
-        duration : 4,
-        genre : "rap",
-    },
-    {
-        no : 11,
-        title : "Venom",
-        artist : "Eminem",
-        duration : 5,
-        genre : "rap",
-    },
-    {
-        no : 12,
-        title : "What a wonderful World",
-        artist : "Louis Armstrong",
-        duration : 2,
-        genre : "jazz",
-    },
-    {
-        no : 13,
-        title : "Craving You",
-        artist : "Thomas Rhett",
-        duration : 5,
-        genre : "country",
-    },
-    {
-        no : 14,
-        title : "Wagon Wheel",
-        artist : "Darius Rucker",
-        duration : 5,
-        genre : "country",
-    },
-    {
-        no : 15,
-        title : "Yours If You Want It",
-        artist : "Rascal Flatts",
-        duration : 5,
-        genre : "country",
-    },
-]
+//Require model
+const {songs, playlists} = require('./model')
 
+//insert the song to collection
+app.post('/insertSong', express.urlencoded({extended:true}), async (req, res) => {
+    const {title, artist, duration, genre} = req.body
+
+    const song = new songs(
+        {
+            title: title,
+            artist: artist,
+            duration: duration,
+            genre: genre
+        }
+    )
+    const saveSong = await song.save()
+    res.send(saveSong)
+})
+//insert the playlist
+app.post('/insertPlaylist', express.urlencoded({extended:true}), async (req, res) => {
+    const {name, list_songs} = req.body
+    const splitSong = list_songs.split(',')
+    //make array for save id books
+    let arrSong = []
+    
+    splitSong.forEach((song)=>{
+        arrSong.push({
+            songs_id: mongoose.Types.ObjectId(song),
+            date: new Date()
+        })
+    })
+
+    const playlist = new playlists(
+        {
+            name : name,
+            list_songs : arrSong
+        },
+        )
+        const savePlaylist = await playlist.save()
+        res.send(savePlaylist)
+})
+
+//Show Data from Collections
+app.get('/', express.urlencoded({extended:true}), async (req, res) => {
+    const showSongs = await songs.find({})
+    res.send(showSongs)
+})
+app.get('/playlist', express.urlencoded({extended:true}), async (req, res) => {
+    const showPlaylists = await playlists.find({})
+    res.send(showPlaylists)
+})
+
+//Update
+app.post('/updateSong', express.urlencoded({extended:true}), async (req, res) => {
+    let {_id, title, artist, duration, genre} = req.body
+    const updateSong = await songs.findByIdAndUpdate(
+        {
+            _id : _id
+        },
+        {
+            $set : {
+                title: title,
+                artist: artist,
+                duration : duration,
+                genre : genre
+            }
+        }
+    )
+    res.send(updateSong)
+})
+
+app.post('/updatePlaylist', express.urlencoded({extended:true}), async (req, res) => {
+    //on progress
+})
+
+//Listen Port
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
  })
