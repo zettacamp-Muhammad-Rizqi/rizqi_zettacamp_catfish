@@ -7,11 +7,19 @@ const typeDefs = gql`
     author: String,
     date_published: Int,
     price: Int,
-    stock: Int
+    stock: Int,
+    status : enumBook
+  }
+  enum enumBook{ 
+    active
+    deleted
   }
   type Query{
+
     getBooks : [Book]
   }
 `;
+
+//harus declare dulu kalau enum
 
 module.exports = {typeDefs}
