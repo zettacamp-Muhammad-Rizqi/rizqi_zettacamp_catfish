@@ -17,7 +17,12 @@ async function startServer(){
         resolvers
     });
     //Mongoose connect and apollo start
-    await mongoose.connect('mongodb://localhost:27017/zettacamp_batch3');
+    await mongoose.connect('mongodb://localhost:27017/zettacamp_batch3', {
+        useUnifiedTopology: true,
+        useNewUrlParser: true,
+    });
+    console.log('Mongoose connected....')
+    
     await apolloServer.start()
     
     
