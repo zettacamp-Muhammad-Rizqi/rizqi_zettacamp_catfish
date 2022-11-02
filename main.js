@@ -1,8 +1,32 @@
-//require express
+//require express and Apollo-server-express
 const {app, express, port} = require('./express')
+const { ApolloServer, gql } = require('apollo-server-express');
 
 const mongoose = require('mongoose')
 const {books, bookShelfs} = require('./model')
+
+//Apollo GraphQL
+// Construct a schema, using GraphQL schema language
+const typeDefs = gql`
+  type Query {
+    hello: String
+  }
+`;
+
+// Provide resolver functions for your schema fields
+const resolvers = {
+  Query: {
+    hello: () => 'Hello world!',
+  },
+};
+
+const server = new ApolloServer({ typeDefs, resolvers });
+
+server.applyMiddleware({ app });
+
+app.listen({ port: 4000 }, () =>
+  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
+);
 
 //Mongose Connections
 async function connected(){
@@ -341,6 +365,6 @@ app.get("/unwind",async(req,res)=>{
 
 
 //Listen port
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
- })
+// app.listen(port, () => {
+//     console.log(`Example app listening on port ${port}`)
+//  })
