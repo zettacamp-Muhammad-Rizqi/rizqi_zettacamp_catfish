@@ -1,2 +1,3 @@
-# Detail task MongoDB Day 7
-Use the existing book collection from your previous tasks, then do complete pagination (using facet & group) to get all the data.
+## Detail Task GraphQL Day 1
+Setup Apollo Server library.on your book purchasing API
+Setup GraphQL Schema for your book purchasing model
