@@ -23,7 +23,7 @@ const shelfSchema = new mongoose.Schema(
 			{
                 _id:false,
                 list_id : {
-					type : mongoose.Schema.Types.ObjectId,
+					type : mongoose.Types.ObjectId,
 				},
                 stock : Number,
                 date : Date,
