@@ -32,15 +32,18 @@ const typeDefs = gql`
   }
 
   type Query{
-    getBooks: [Book]
-    getBooksPrice(
-      _id : ID,
-      title : String,
-      author : String,
+    getAllBooks(
+      skip : Int,
+      limit: Int
+    ): [Book]
+    
+    getBooksPrice (
+      _id :ID,
+      title: String,
       price : Int,
       skip : Int,
       limit : Int
-    ) : Book
+    ) : [Book]
   }
 `;
 

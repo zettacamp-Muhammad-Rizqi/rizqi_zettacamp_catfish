@@ -1,31 +1,60 @@
 // Provide resolver functions for your schema fields
+const { default: mongoose } = require('mongoose');
 const {books} = require('../model')
 const resolvers = {
     Query: {
-      getBooks: async () => {  
-        const result = await books.find({})
-        return result
-      },
-      getBooksPrice: async (_, {_id, price, title, author, skip, limit}) =>{
-        const findBook = await books.aggregate([
+      getAllBooks: async (_, skip, limit) => {  
+        const result = await books.aggregate([
           {
-            $match : {
-              _id : _id,
-              title : title,
-              author: author,
-              price : price,
+            $project: {
+              _id:1, title:1, author:1, date_published:1, price:1, stock:1
             }
           },
           {
-            $skip : skip*limit
+            $skip: skip*limit
           },
           {
-            $limit : limit
+            $limit: limit
+          }
+        ])
+        return result
+      },
+
+      getBooksPrice: async (_, {_id, title, price, skip, limit}) =>{
+        const mathQuery = {
+          $and : []
+        }
+        if(_id){
+          mathQuery.$and.push({
+            _id : mongoose.Types.ObjectId(_id)
+          })
+        }
+        if(title){
+          mathQuery.$and.push({title})
+        }
+        if(price){
+          mathQuery.$and.push({price})
+        }
+        if(!_id && !title && !price){
+          const findBook2 = await books.find({})
+          return findBook2
+        }
+
+        const findBook = await books.aggregate([
+          {
+            $match: mathQuery
+          },
+          {
+            $skip: skip*limit
+          },
+          {
+            $limit: limit
           }
         ])
         return findBook
       }
     },
+
 
     Mutation: {
       addBook: async (_, {title, author, price, stock})=>{
