@@ -67,7 +67,9 @@ const resolvers = {
             stock : stock
           }
         )
+        console.log(book)
         const saveBook = await book.save()
+        console.log(saveBook)
         return saveBook
       },
 
@@ -95,8 +97,7 @@ const resolvers = {
         const deleteBook = await books.findByIdAndDelete(
           {
             _id : _id
-          },
-          {new: true}
+          }
         )
         return deleteBook
       },

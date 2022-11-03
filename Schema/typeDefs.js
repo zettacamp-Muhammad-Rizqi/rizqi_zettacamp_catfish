@@ -20,7 +20,7 @@ const typeDefs = gql`
       author: String,
       price: Int,
       stock: Int,
-    ) : [Book]
+    ) : Book
 
     updateBook(
       _id : ID,
@@ -28,11 +28,11 @@ const typeDefs = gql`
       author: String,
       price: Int,
       stock: Int
-    ) : [Book]
+    ) : Book
 
     deleteBook(
       _id : ID,
-    ) : [Book]
+    ) : Book
 
     buyBook(
       _id:ID,
