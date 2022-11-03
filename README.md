@@ -1,3 +1,2 @@
-## Detail Task GraphQL Day 1
-Setup Apollo Server library.on your book purchasing API
-Setup GraphQL Schema for your book purchasing model
+## Detail Task GraphQL Day 2
+Transform CRUD on book purchasing API to Query & Mutation of GraphQL
