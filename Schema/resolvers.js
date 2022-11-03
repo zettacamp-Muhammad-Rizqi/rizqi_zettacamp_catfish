@@ -102,7 +102,7 @@ const resolvers = {
         return deleteBook
       },
 
-      buyBook: async (_,{_id, discount, tax})=>{
+      buyBook: async (_,{_id, discount, tax, manyBuy})=>{
         const buyBook = await books.aggregate([
           {
             $match: {
@@ -136,7 +136,35 @@ const resolvers = {
                 $sum: ["$price_after_discount", "$amount_Of_Tax"]
               }
             }
+          },
+          {
+            $addFields:{
+              manyBuy: manyBuy
+            }
+          },
+          {
+            $addFields: {
+              total_price : {
+                $multiply: ["$price_after_discount", manyBuy]
+              }
+            }
+          },
+          {
+            $project:
+            {
+              _id:1, title:1, author:1, date_published:1, price:1, amount_Of_Discount:1, amount_Of_Tax:1, price_after_discount:1, price_after_tax:1, manyBuy:1, total_price:1,
+              stock: {
+                $subtract:["$stock", manyBuy]
+              }
+            }
           }
+          // {
+          //   $addFields: {
+          //     stock_left: {
+          //       $subtract: ["$stock", manyBuy]
+          //     }
+          //   }
+          // }
         ])
         // console.log(buyBook)
         return buyBook

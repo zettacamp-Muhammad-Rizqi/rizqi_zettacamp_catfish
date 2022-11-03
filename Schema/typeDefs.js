@@ -11,7 +11,9 @@ const typeDefs = gql`
     amount_Of_Discount: Int,
     amount_Of_Tax: Int,
     price_after_discount: Int,
-    price_after_tax: Int
+    price_after_tax: Int,
+    manyBuy: Int,
+    total_price: Int,
   }
 
   type Mutation{
@@ -38,6 +40,7 @@ const typeDefs = gql`
       _id:ID,
       discount: Int,
       tax: Int,
+      manyBuy: Int
     ) : [Book]
   }
 
