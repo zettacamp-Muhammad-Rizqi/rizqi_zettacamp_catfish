@@ -15,7 +15,6 @@ const typeDefs = gql`
     deleted
   }
   type Query{
-
     getBooks : [Book]
   }
 `;
