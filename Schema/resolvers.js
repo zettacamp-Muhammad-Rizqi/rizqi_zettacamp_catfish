@@ -99,6 +99,46 @@ const resolvers = {
           {new: true}
         )
         return deleteBook
+      },
+
+      buyBook: async (_,{_id, discount, tax})=>{
+        const buyBook = await books.aggregate([
+          {
+            $match: {
+              _id : mongoose.Types.ObjectId(_id)
+            }
+          },
+          {
+            $addFields: {
+              amount_Of_Discount : {
+                $multiply : [discount/100, "$price"]
+              },
+            }
+          },
+          {
+            $addFields: {
+              amount_Of_Tax: {
+                $multiply : [tax/100, "$price"]
+              }
+            }
+          },
+          {
+            $addFields: {
+              price_after_discount: {
+                $subtract: ["$price", "$amount_Of_Discount"]
+              }
+            }
+          },
+          {
+            $addFields: {
+              price_after_tax: {
+                $sum: ["$price_after_discount", "$amount_Of_Tax"]
+              }
+            }
+          }
+        ])
+        // console.log(buyBook)
+        return buyBook
       }
     }
   };

@@ -8,6 +8,10 @@ const typeDefs = gql`
     date_published: String,
     price: Int,
     stock: Int,
+    amount_Of_Discount: Int,
+    amount_Of_Tax: Int,
+    price_after_discount: Int,
+    price_after_tax: Int
   }
 
   type Mutation{
@@ -16,7 +20,7 @@ const typeDefs = gql`
       author: String,
       price: Int,
       stock: Int,
-    ) : Book
+    ) : [Book]
 
     updateBook(
       _id : ID,
@@ -24,11 +28,17 @@ const typeDefs = gql`
       author: String,
       price: Int,
       stock: Int
-    ) : Book
+    ) : [Book]
 
     deleteBook(
       _id : ID,
-    ) : Book
+    ) : [Book]
+
+    buyBook(
+      _id:ID,
+      discount: Int,
+      tax: Int,
+    ) : [Book]
   }
 
   type Query{
