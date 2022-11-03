@@ -3,7 +3,7 @@ const { default: mongoose } = require('mongoose');
 const {books} = require('../model')
 const resolvers = {
     Query: {
-      getAllBooks: async (_, skip, limit) => {  
+      getAllBooks: async (_, {skip, limit}) => {  
         const result = await books.aggregate([
           {
             $project: {
