@@ -36,8 +36,8 @@ const typeDefs = gql`
       skip : Int,
       limit: Int
     ): [Book]
-    
-    getBooksPrice (
+
+    getBooksByMatch(
       _id :ID,
       title: String,
       price : Int,

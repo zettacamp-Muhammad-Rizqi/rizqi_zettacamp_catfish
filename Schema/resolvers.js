@@ -20,7 +20,7 @@ const resolvers = {
         return result
       },
 
-      getBooksPrice: async (_, {_id, title, price, skip, limit}) =>{
+      getBooksByMatch: async (_, {_id, title, price, skip, limit}) =>{
         const mathQuery = {
           $and : []
         }
