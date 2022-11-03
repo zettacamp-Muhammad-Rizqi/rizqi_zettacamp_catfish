@@ -5,17 +5,42 @@ const typeDefs = gql`
     _id: ID,
     title: String,
     author: String,
-    date_published: Int,
+    date_published: String,
     price: Int,
     stock: Int,
-    status : enumBook
   }
-  enum enumBook{ 
-    active
-    deleted
+
+  type Mutation{
+    addBook(
+      title: String,
+      author: String,
+      price: Int,
+      stock: Int,
+    ) : Book
+
+    updateBook(
+      _id : ID,
+      title: String,
+      author: String,
+      price: Int,
+      stock: Int
+    ) : Book
+
+    deleteBook(
+      _id : ID,
+    ) : Book
   }
+
   type Query{
-    getBooks : [Book]
+    getBooks: [Book]
+    getBooksPrice(
+      _id : ID,
+      title : String,
+      author : String,
+      price : Int,
+      skip : Int,
+      limit : Int
+    ) : Book
   }
 `;
 

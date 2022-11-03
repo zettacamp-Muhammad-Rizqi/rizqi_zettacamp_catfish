@@ -34,15 +34,9 @@ async function startServer(){
 }
 startServer();
 
-
-//   //root the page that show data collections
-// app.get('/', express.urlencoded({extended:true}), async (req, res) => {
-//     const showData = await books.find()
-//     res.send(showData)
-// })
-  
 // //insert the book to collection
 // app.post('/insertBook', express.urlencoded({extended:true}), async (req, res) => {
+    
 //     const {title, author, price, stock} = req.body
 
 //     const book = new books(
