@@ -1,6 +1,6 @@
 // Provide resolver functions for your schema fields
 const { default: mongoose } = require('mongoose');
-const {books} = require('../model')
+const {books, bookShelfs} = require('../model')
 const resolvers = {
     Query: {
       getAllBooks: async (_, {skip, limit}) => {  
@@ -52,7 +52,12 @@ const resolvers = {
           }
         ])
         return findBook
-      }
+      },
+
+      getBookShelves: async () =>{
+        const bookShelves = await bookShelfs.find({})
+        return bookShelves
+      } 
     },
 
 

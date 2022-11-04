@@ -16,6 +16,24 @@ const typeDefs = gql`
     total_price: Int,
   }
 
+  type BookId{
+    list_id: ID,
+    stock: Int,
+    date: String
+  }
+
+  type AddShelf{
+    time: String,
+    date_add: String
+  }
+
+  type BookShelves{
+    number_shelf: Int,
+    category: String,
+    book_id: [BookId],
+    add : [AddShelf]
+  }
+
   type Mutation{
     addBook(
       title: String,
@@ -57,9 +75,9 @@ const typeDefs = gql`
       skip : Int,
       limit : Int
     ) : [Book]
+
+    getBookShelves : [BookShelves]
   }
 `;
-
-//harus declare dulu kalau enum
 
 module.exports = {typeDefs}
