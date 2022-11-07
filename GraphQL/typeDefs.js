@@ -10,12 +10,17 @@ const typeDefs = gql`
   }
 
   type ListSong{
-    songs_id: ID,
+    songs_id: Song,
     date: String
   }
 
   input IdSong{
-    songs_id : ID
+    songs_id : [ID]
+  }
+
+  input songData {
+    name : String
+    song_ids: [ID]
   }
 
   type Playlist{
@@ -29,6 +34,7 @@ const typeDefs = gql`
         skip: Int,
         limit: Int
     ): [Song]
+    getPlaylist:[Playlist]
   }
 
   type Mutation{
@@ -49,7 +55,7 @@ const typeDefs = gql`
 
     deleteSong(_id: ID) : Song
     
-    addPlaylist(name: String, list_songs: [IdSong]) : [Playlist]
+    addPlaylist(inputSong : songData) : Playlist
   }
 `;
 

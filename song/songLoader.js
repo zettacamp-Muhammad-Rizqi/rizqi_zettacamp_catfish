@@ -2,26 +2,28 @@
 const DataLoader = require('dataloader')
 
 //import model book
-const {books} = require('./model')
+const {songs} = require('../model')
 
 
-const loadBook = async function (book_id){
-    const bookList = await books.find({
+const loadSong = async function (songs_id){
+    // console.log(songs_id)
+    const songList = await songs.find({
         _id:{
-            $in: book_id
+            $in: songs_id
         }
     })
 
     //create Map for book
-    const bookMap = {}
+    const songMap = {}
     
     //insert data to bookMap with index
-    bookList.forEach((book) => {
-        bookMap[book._id] = book
+    songList.forEach((song) => {
+        songMap[song._id] = song
     });
 
-    return book_id.map(id=>bookMap[id])
+    return songs_id.map(id=>songMap[id])
 }
 
-const bookShelfLoader = new DataLoader(loadBook)
-module.exports = bookShelfLoader;
+const songLoader = new DataLoader(loadSong)
+// console.log(songLoader)
+module.exports = songLoader;

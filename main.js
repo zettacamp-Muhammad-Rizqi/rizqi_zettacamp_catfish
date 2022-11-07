@@ -7,13 +7,28 @@ const mongoose = require('mongoose')
 const {typeDefs} = require('./GraphQL/typeDefs')
 const {resolvers} = require('./GraphQL/resolvers')
 
+//loader
+const 
+    songLoader
+= require('./song/songLoader')
+
+// console.log(songLoader)
+
 
 //Server Connect
 async function startServer(){
    
     const apolloServer = new ApolloServer({ 
         typeDefs,
-        resolvers
+        resolvers,
+        context: function ({
+            req
+        }) {
+            req : req;
+            return {
+                songLoader,
+            };
+        }
     });
     //Mongoose connect and apollo start
     await mongoose.connect('mongodb://localhost:27017/zettacamp_batch3', {

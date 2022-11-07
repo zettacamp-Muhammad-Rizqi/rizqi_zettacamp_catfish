@@ -1,12 +1,14 @@
 const mongoose = require('mongoose')
 const {playlists} = require('../model')
 
-const insertPlaylist = async (_, {name, list_songs}) =>{
-    const splitSong = list_songs.split(',')
+const insertPlaylist = async (_, {inputSong}) =>{
+    console.log(inputSong)
+    // const splitSong = list_songs.split(',')
+
     //make array for save id songs
     let arrSong = []
-    
-    splitSong.forEach((song)=>{
+    console.log(inputSong.song_ids)
+    inputSong.song_ids.forEach((song)=>{
         arrSong.push({
             songs_id: mongoose.Types.ObjectId(song),
             date: new Date()
@@ -15,7 +17,7 @@ const insertPlaylist = async (_, {name, list_songs}) =>{
 
     const playlist = new playlists(
         {
-            name : name,
+            name : inputSong.name,
             list_songs : arrSong
         },
     )
@@ -24,4 +26,9 @@ const insertPlaylist = async (_, {name, list_songs}) =>{
     return savePlaylist
 }
 
-module.exports = {insertPlaylist}
+const getPlaylist = async (parent, {})=>{
+    const get = playlists.find({})
+    return get
+}
+
+module.exports = {insertPlaylist, getPlaylist}
