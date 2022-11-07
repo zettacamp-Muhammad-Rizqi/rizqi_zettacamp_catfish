@@ -1,4 +1,4 @@
-const { default: mongoose, SchemaType } = require("mongoose");
+const { default: mongoose} = require("mongoose");
 
 //Song Schema
 const songSchema = new mongoose.Schema(

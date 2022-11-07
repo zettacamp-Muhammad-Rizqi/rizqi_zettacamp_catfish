@@ -2,14 +2,37 @@ const { gql} = require('apollo-server-express');
 // Construct a schema, using GraphQL schema language
 const typeDefs = gql`
   type Song {
-    title: String,
-    artist: String,
+    _id : ID,
+    title : String,
+    artist : String,
     duration : Int,
     genre : String
   }
 
   type Query{
-    getSongs : [Song]
+    getAllSong (
+        skip: Int,
+        limit: Int
+    ): [Song]
+  }
+
+  type Mutation{
+    addSong (
+        title: String,
+        artist: String,
+        duration : Int,
+        genre : String
+    ) : Song
+
+    updateSong(
+        _id: ID,
+        title: String,
+        artist: String,
+        duration : Int,
+        genre : String
+    ) : Song
+
+    deleteSong(_id: ID) : Song
   }
 `;
 
