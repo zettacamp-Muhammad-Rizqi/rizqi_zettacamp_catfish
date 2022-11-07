@@ -41,7 +41,19 @@ const shelfSchema = new mongoose.Schema(
   	{ timestamps : true} //update created At and update At to timestamps
 )
 
-//Model Schema
 const bookShelfs = mongoose.model("bookShelf", shelfSchema);
 
-module.exports = {books, bookShelfs}
+//User Model
+const userSchema = new mongoose.Schema(
+    {
+        username: String,
+        email: String,
+        password: String,
+        token: String
+    },
+    {timestamps:true}
+)
+
+const users = mongoose.model("users", userSchema)
+
+module.exports = {books, bookShelfs, users}

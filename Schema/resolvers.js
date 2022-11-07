@@ -1,6 +1,22 @@
 // Provide resolver functions for your schema fields
+const { ApolloError } = require('apollo-server-express');
 const { default: mongoose } = require('mongoose');
-const {books, bookShelfs} = require('../model')
+const {books, bookShelfs, users} = require('../model')
+const jwt = require('jsonwebtoken')
+
+// const getBookShelfLoader = async function (parent, args, context) {
+//   if (parent.created_by) {
+//       return await context.PlaylistCreatedByLoader.load(parent.created_by);
+//   };
+// };
+
+getBookShelves = async (parent ,args, context) =>{
+  console.log(parent)
+  if(parent.book_id){
+    return await context.bookShelfLoader.load(parent.book_id)
+  }
+}
+
 const resolvers = {
     Query: {
       getAllBooks: async (_, {skip, limit}) => {  
@@ -54,13 +70,14 @@ const resolvers = {
         return findBook
       },
 
-      getBookShelves: async () =>{
-        const bookShelves = await bookShelfs.find({})
-        return bookShelves
-      } 
+      getAllBookShelves: async (_,)=>{
+        const read = await bookShelfs.find({})
+        return read
+      }
+
     },
-
-
+    
+    
     Mutation: {
       addBook: async (_, {title, author, price, stock})=>{
         const book = new books(
@@ -173,8 +190,78 @@ const resolvers = {
         ])
         // console.log(buyBook)
         return buyBook
-      }
+      },
+      
+      // registerUser: async (_, {registerInput:{username, email, password}}) =>{
+      //   const oldUser = await users.findOne({email})
+
+      //   //if already have return ApolloError
+      //   if(oldUser){
+      //     throw new ApolloError('A user is already registered with the email'+ email, 'User Already Exists')
+      //   }
+
+      //   //encrypted password
+      //   let encryptedPassword = await bcrypt.hash(password, 10)
+
+
+      //   const newUser = new users(
+      //     {
+      //       username: username,
+      //       email: email.toLowerCase(),
+      //       password: encryptedPassword
+      //     }
+      //   )
+
+      //   //create JWT to Attach into model
+      //   const token = jwt.sign(
+      //     {
+      //       user_id: newUser._id, email
+      //     },
+      //     "UNSAFE_STRING",
+      //     {
+      //       expiresIn: "2h"
+      //     }
+      //   )
+
+      //   newUser.token = token;
+        
+      //   const userSave = await newUser.save();
+      //   return {
+      //     id: userSave.id,
+      //     ...userSave._doc
+      //   }
+      // },
+      // loginUser: async (_, {loginInput:{email, password}})=>{
+      //   const user = await users.findOne({email})
+
+      //   if(user && (await bcrypt.compare(password, user.model))){
+      //     //Make a new token
+      //     const token = jwt.sign(
+      //       {
+      //         user_id: newUser._id, email
+      //       },
+      //       "UNSAFE_STRING",
+      //       {
+      //         expiresIn: "2h"
+      //       }
+      //     )
+          
+      //     user.token = token
+
+      //     return {
+      //       id: user.id,
+      //       ...user._doc
+      //     }
+      //   }
+      // }
+    },
+
+
+
+    BookId: {
+      list_id: getBookShelves
     }
+
   };
 
   module.exports = {resolvers}
