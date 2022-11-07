@@ -1,26 +1,35 @@
+const mongoose = require('mongoose')
 //Song Model
 const {songs} = require('../model')
 
 const songGetAll = async (_,{skip, limit})=>{
-    const getSongs = await songs.aggregate([
-        {
-            $project: {
-                _id:1,
-                title:1,
-                artist:1,
-                duration:1,
-                genre:1
+    if(skip==0 && limit==0){
+        const getSongs = await songs.find({})
+        return getSongs
+    }else{
+        const getSongs = await songs.aggregate([
+            {
+                $project: {
+                    _id:1,
+                    title:1,
+                    artist:1,
+                    duration:1,
+                    genre:1
+                }
+            },
+            {
+                $skip: skip*limit
+            },
+            {
+                $limit: limit
             }
-        },
-        {
-            $skip: skip*limit
-        },
-        {
-            $limit: limit
-        }
-    ])
-    return getSongs
-    
+        ])
+        getSongs.map((el)=>{
+            el.id=mongoose.Types.ObjectId(el._id)
+            return el
+        })
+        return getSongs
+    }
 }
 
 const insertNewSong = async (_,{title, artist, duration, genre})=>{

@@ -9,6 +9,21 @@ const typeDefs = gql`
     genre : String
   }
 
+  type ListSong{
+    songs_id: ID,
+    date: String
+  }
+
+  input IdSong{
+    songs_id : ID
+  }
+
+  type Playlist{
+    _id : ID,
+    name : String,
+    list_songs : [ListSong]
+  }
+
   type Query{
     getAllSong (
         skip: Int,
@@ -33,6 +48,8 @@ const typeDefs = gql`
     ) : Song
 
     deleteSong(_id: ID) : Song
+    
+    addPlaylist(name: String, list_songs: [IdSong]) : [Playlist]
   }
 `;
 

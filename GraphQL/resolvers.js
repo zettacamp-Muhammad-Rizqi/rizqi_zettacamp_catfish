@@ -1,10 +1,10 @@
-//Require model
-const {songs, playlists} = require('../model')
+//Require Functions
 const {
     songGetAll,
     insertNewSong,
     songUpdate,
-    songDelete
+    songDelete,
+    insertPlaylist,
 } = require('../song/songs')
 
 // Provide resolver functions for schema fields
@@ -17,6 +17,7 @@ const resolvers = {
         addSong : insertNewSong,
         updateSong : songUpdate,
         deleteSong : songDelete,
+        addPlaylist : {insertPlaylist},
     }
   };
 
