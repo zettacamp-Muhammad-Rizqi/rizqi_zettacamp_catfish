@@ -17,17 +17,27 @@ const typeDefs = gql`
     first_name: String,
   }
 
+  input UpdateTheUser{
+    _id: ID,
+    password: String,
+    email: String,
+    last_name: String,
+    first_name: String,
+  }
+
+
   enum Status{
     active,
     deleted
   }
 
   type Query{
-    getUser : [User]
+    GetOneUser (_id: ID, email: String): User
   }
 
   type Mutation{
-    registNewUser(register: RegistUser) : User
+    CreateUser(register: RegistUser) : User
+    UpdateUser(update: UpdateTheUser) : User
   }
 `;
 
