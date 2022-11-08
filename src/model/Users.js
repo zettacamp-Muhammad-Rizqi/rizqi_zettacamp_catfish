@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema(
         email: {type: String, unique:true},
         last_name: String,
         first_name: String,
-        status : {type: String, enum:["active", "deleted"]}
+        status : {type: String, enum:["active", "deleted"], default: "active"}
     },
     {timestamps : true}
   )
