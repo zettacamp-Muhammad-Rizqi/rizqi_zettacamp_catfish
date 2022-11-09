@@ -39,6 +39,7 @@ const typeDefs = gql`
     CreateUser(register: RegistUser) : User
     UpdateUser(update: UpdateTheUser) : User
     DeleteUser(_id: ID) : User
+    Login(email: String, password: String): User
   }
 `;
 
