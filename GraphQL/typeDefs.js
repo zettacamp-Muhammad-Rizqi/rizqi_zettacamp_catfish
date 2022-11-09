@@ -38,6 +38,7 @@ const typeDefs = gql`
   type Mutation{
     CreateUser(register: RegistUser) : User
     UpdateUser(update: UpdateTheUser) : User
+    DeleteUser(_id: ID) : User
   }
 `;
 

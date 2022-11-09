@@ -3,6 +3,7 @@ const {registUser} = require('../src/Users/regist.users')
 const {updateUser} = require('../src/Users/update.users')
 const {getOneUser} = require('../src/Users/getOne.users')
 const {getAllUser} = require('../src/Users/getAll.users')
+const {deleteUser} = require('../src/Users/delete.users')
 
 // Provide resolver functions for your schema fields
 const resolvers = {
@@ -12,7 +13,8 @@ const resolvers = {
     },
     Mutation: {
         CreateUser : registUser,
-        UpdateUser : updateUser
+        UpdateUser : updateUser,
+        DeleteUser : deleteUser,
     },
   };
 
