@@ -25,13 +25,13 @@ const typeDefs = gql`
     first_name: String,
   }
 
-
   enum Status{
     active,
     deleted
   }
 
   type Query{
+    GetAllUser (email:String, last_name:String, first_name:String, skip: Int, limit: Int): [User]
     GetOneUser (_id: ID, email: String): User
   }
 
