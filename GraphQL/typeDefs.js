@@ -10,6 +10,10 @@ const typeDefs = gql`
     status : Status
   }
 
+  type TokenUser {
+    token: String
+  }
+
   input RegistUser{
     password: String,
     email: String,
@@ -23,6 +27,11 @@ const typeDefs = gql`
     email: String,
     last_name: String,
     first_name: String,
+  }
+
+  input InputLogin{
+    email: String,
+    password: String
   }
 
   enum Status{
@@ -39,7 +48,7 @@ const typeDefs = gql`
     CreateUser(register: RegistUser) : User
     UpdateUser(update: UpdateTheUser) : User
     DeleteUser(_id: ID) : User
-    Login(email: String, password: String): User
+    Login(input: InputLogin): TokenUser
   }
 `;
 

@@ -1,11 +1,13 @@
-const {users} = require('../src/model/Users')
+const {users} = require('../model/Users')
 const { ApolloError } = require('apollo-server-errors');
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
-const loginUser = async (_, {email, password}) =>{
+const loginUser = async (_, {input: {email, password}}) =>{
     const user = await users.findOne({email})
-    const decrypt = await bcrypt.compare(password, users.password)
+    const decrypt = await bcrypt.compare(password, user.password)
+    // console.log(user)
+    // console.log(decrypt)
 
     if(user && decrypt){
         const token = jwt.sign(
@@ -17,7 +19,8 @@ const loginUser = async (_, {email, password}) =>{
                 expiresIn: '2h'
             }
         )
-        return token
+        // console.log(token)
+        return {token} //karena bentuknya object, kalau ga di kasih kurung kerawal dia bakal null
     } else {
         throw new ApolloError('Incorrect email or password')
     }
