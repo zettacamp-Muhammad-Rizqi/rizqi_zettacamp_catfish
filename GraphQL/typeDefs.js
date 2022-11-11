@@ -10,6 +10,12 @@ const typeDefs = gql`
     status : Status
   }
 
+  type Ingredients{
+    name: String,
+    stock: Int,
+    status : Status
+  }
+
   type TokenUser {
     token: String
   }
@@ -39,6 +45,11 @@ const typeDefs = gql`
     deleted
   }
 
+  input Ingredient{
+    name: String,
+    stock: Int
+  }
+
   type Query{
     GetAllUser (email:String, last_name:String, first_name:String, skip: Int, limit: Int): [User]
     GetOneUser (_id: ID, email: String): User
@@ -49,6 +60,7 @@ const typeDefs = gql`
     UpdateUser(update: UpdateTheUser) : User
     DeleteUser(_id: ID) : User
     Login(input: InputLogin): TokenUser
+    CreateIngredient(input: Ingredient) : Ingredients
   }
 `;
 

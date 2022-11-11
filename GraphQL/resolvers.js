@@ -5,6 +5,7 @@ const {getOneUser} = require('../src/Users/getOne.users')
 const {getAllUser} = require('../src/Users/getAll.users')
 const {deleteUser} = require('../src/Users/delete.users')
 const {loginUser} = require('../src/Users/login.users')
+const {createIngredient} = require('../src/Ingredients/create.ingredients')
 
 // Provide resolver functions for your schema fields
 const resolvers = {
@@ -17,6 +18,7 @@ const resolvers = {
         UpdateUser : updateUser,
         DeleteUser : deleteUser,
         Login : loginUser,
+        CreateIngredient : createIngredient,
     },
   };
 
