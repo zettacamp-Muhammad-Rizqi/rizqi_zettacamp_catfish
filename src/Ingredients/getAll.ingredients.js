@@ -6,15 +6,13 @@ const getAllIngredient = async (_, {name, stock, skip, limit}) =>{
     
     const matchQuery = {$and : [{status:"active"}]}
 
-    matchQuery.$and.push({stock: {
-        $gt: 0
-    }})
-    
     if(name){
         matchQuery.$and.push({name})
     }
     if(stock){
         matchQuery.$and.push({stock})
+    }else if(stock<=0){
+        throw new ApolloError('Stock: []')
     }
 
     if(!name && !stock && !skip && !limit){
