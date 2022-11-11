@@ -63,6 +63,7 @@ const typeDefs = gql`
     DeleteUser(_id: ID) : User
     Login(input: InputLogin): TokenUser
     CreateIngredient(input: Ingredient) : Ingredients
+    UpdateIngredient(_id:ID, stock: Int): Ingredients
   }
 `;
 
