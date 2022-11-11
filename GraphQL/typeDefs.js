@@ -11,6 +11,7 @@ const typeDefs = gql`
   }
 
   type Ingredients{
+    _id: ID,
     name: String,
     stock: Int,
     status : Status
@@ -53,6 +54,7 @@ const typeDefs = gql`
   type Query{
     GetAllUser (email:String, last_name:String, first_name:String, skip: Int, limit: Int): [User]
     GetOneUser (_id: ID, email: String): User
+    GetOneIngredient (_id: ID): Ingredients
   }
 
   type Mutation{
