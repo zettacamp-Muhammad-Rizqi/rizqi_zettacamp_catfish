@@ -9,12 +9,14 @@ const {createIngredient} = require('../src/Ingredients/create.ingredients')
 const {getOneIngredient} = require('../src/Ingredients/getOne.ingredients')
 const {updateIngredient} = require('../src/Ingredients/update.ingredients')
 const {deleteIngredient} = require('../src/Ingredients/delete.ingredients')
+const {getAllIngredient} = require('../src/Ingredients/getAll.ingredients')
 // Provide resolver functions for your schema fields
 const resolvers = {
     Query: {
         GetAllUser: getAllUser,
         GetOneUser: getOneUser,
         GetOneIngredient: getOneIngredient,
+        GetAllIngredients: getAllIngredient,
     },
     Mutation: {
         CreateUser : registUser,
