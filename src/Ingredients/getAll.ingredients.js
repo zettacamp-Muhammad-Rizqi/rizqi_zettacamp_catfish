@@ -1,5 +1,4 @@
 const { ApolloError } = require('apollo-server-express')
-const { default: mongoose } = require('mongoose')
 const {ingredients} = require('../model/Ingredients')
 
 const getAllIngredient = async (_, {name, stock, skip, limit}) =>{
