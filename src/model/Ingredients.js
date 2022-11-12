@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-//Book Shema
+//ingredient Schema
 const ingredientSchema = new mongoose.Schema(
     {
         name: String,

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-//Book Shema
+//Users Schema
 const userSchema = new mongoose.Schema(
     {
         password: String,
