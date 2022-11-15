@@ -8,37 +8,44 @@ const { ApolloServer} = require('apollo-server-express');
 
 //Mongoose and GraphQL Import
 const mongoose = require('mongoose')
-// const applyMiddleware = require('graphql-middleware')
-// const {makeExecutableSchema} = require('graphql-tools')
+const {applyMiddleware} = require('graphql-middleware')
+const {makeExecutableSchema} = require('graphql-tools')
+
+//import lodash to merge
+const {merge} = require('lodash')
+
 const {typeDefs} = require('./GraphQL/typeDefs')
 const {resolvers} = require('./GraphQL/resolvers')
 
 // //import auth
-// const {authToken} = require('./middleware/auth.users')
+const authUser = require('./middleware/auth.users')
+
+const auth = merge(authUser)
 
 // //Schema executable
-// const executableSchema = makeExecutableSchema({
-//     typeDefs,
-//     resolvers
-// });
+const executableSchema = makeExecutableSchema({
+    typeDefs,
+    resolvers
+});
 
-// const protectedSchema = applyMiddleware(executableSchema, authToken)
+//make protected schema for apply middleware for auth
+const protectedSchema = applyMiddleware(executableSchema, auth)
 
 //Server Connect
 async function startServer (){
    
     const apolloServer = new ApolloServer({ 
-        // schema: protectedSchema,
+        schema: protectedSchema,
         typeDefs,
         resolvers,
-        // context: function ({
-        //     req
-        // }) {
-        //     req: req;
-        //     return {
-        //         req
-        //     };
-        // }
+        context: function ({
+            req
+        }) {
+            req;
+            return {
+                req
+            };
+        }
     });
     //Mongoose connect and apollo start
     await mongoose.connect('mongodb://localhost:27017/zettacamp_batch3', {

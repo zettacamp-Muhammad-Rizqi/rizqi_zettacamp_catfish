@@ -18,12 +18,12 @@ const authToken = async (resolver, parent, args, context, info) =>{
 }
 
 module.exports = {
-    // Query: {
-    //     GetAllUser: authToken,
-    //     GetOneUser: authToken,
-    // },
-    // Mutation: {
-    //     UpdateUser : authToken,
-    //     DeleteUser : authToken,
-    // }
+    Query: {
+        GetAllUser: authToken,
+        GetOneUser: authToken,
+    },
+    Mutation: {
+        UpdateUser : authToken,
+        DeleteUser : authToken,
+    }
 }
