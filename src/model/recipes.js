@@ -4,16 +4,17 @@ const mongoose = require('mongoose')
 const recipeSchema = new mongoose.Schema(
     {
         recipe_name: String,
-        _id: false,
         ingredients:[
             {
                 ingredient_id: {
-                    type: mongoose.Types.ObjectId
+                    type: mongoose.Types.ObjectId,
+                    ref : 'ingredients'
                 },
                 
                 stock_used: Number
             }
         ],
+        price: Number,
         status : {type: String, enum:["active", "deleted"], default: "active"}
     },
     {timestamps : true}

@@ -21,9 +21,15 @@ module.exports = {
     Query: {
         GetAllUser: authToken,
         GetOneUser: authToken,
+        GetOneIngredient: authToken,
+        GetAllIngredients: authToken,
     },
     Mutation: {
         UpdateUser : authToken,
         DeleteUser : authToken,
+        CreateIngredient : authToken,
+        UpdateIngredient : authToken,
+        DeleteIngredient : authToken,
+        CreateRecipe : authToken,
     }
 }
